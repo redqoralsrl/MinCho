@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const socket = require('socket.io');
 const api = require('binance'); // npm i github:karthik947/binance#master
 
 const indexRouter = require('./routes/index');

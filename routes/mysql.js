@@ -5,7 +5,7 @@ const  client = mysql.createConnection({
     port : 3306,
     user : 'root',
     password : '',
-    database : 'sublogin'
+    database : 'trade'
 });
 
 module.exports = client;

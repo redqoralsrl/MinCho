@@ -7,10 +7,20 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('chart',{
-    title : ejs.render('title'),
-    listchart : ejs.render('listchart')
-  });
+    if (req.session.logined == true) {
+        res.render('chart',{
+            title : ejs.render('title'),
+            logined: true,
+            // listchart : ejs.render('listchart')
+        });
+        }
+    else {
+        res.render('chart',{
+            title : ejs.render('title'),
+            logined: false,
+            // listchart : ejs.render('listchart')
+        });
+    }
 });
 
 router.get('/account', async(req, res, next) => {

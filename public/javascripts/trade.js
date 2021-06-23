@@ -45,6 +45,8 @@ function setUpbitData(){
         .done(function(tickers){
             $("#table_ticker > tbody > tr").remove();
             for(let i = 0; i < tickers.length; i++){
+                if(arr_english_name[i] == "Bitcoin Cash")
+                    arr_english_name[i] = "Timocoin"
                 let rowHtml = "<tr><td>" + arr_english_name[i] + "</td>";
                 rowHtml += "<td rowspan=\"2\">" + comma(tickers[i].trade_price)+"</td>";
                 rowHtml += "<td rowspan=\"2\">" + comma((tickers[i].signed_change_rate*100).toFixed(2))+"</td>";

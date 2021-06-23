@@ -22,7 +22,7 @@ fetch(`http://127.0.0.1:9665/fetchAPI?endpoint=https://api.binance.com/api/v3/kl
   })
   .catch(err => log(err))
   
-const socket = io.connect('http://127.0.0.1:3000/');
+const socket = io.connect('http://127.0.0.1:4000/');
 
 socket.on('KLINE',(pl)=>{
     candleSeries.update(pl);

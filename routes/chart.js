@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('chart',{
     title : ejs.render('title'),
+    logined : false,
     listchart : ejs.render('listchart')
   });
 });

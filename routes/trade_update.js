@@ -7,12 +7,14 @@ router.get('/', function(req, res, next) {
         res.render('trade', {
             logined: true,
             title : ejs.render('title'),
+            // listchart : ejs.render('listchart'),
         });
     }
     else {
         res.render('trade',{
             logined : false,
-            title : ejs.render('title')
+            title : ejs.render('title'),
+            // listchart : ejs.render('listchart'),
         });
     }
 });

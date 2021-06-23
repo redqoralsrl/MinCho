@@ -1,9 +1,13 @@
 <!DOCTYPE html>
     <head>
-        <title>Mincho 시세</title>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <title>거래소</title>
     </head>
 
     <body>
+        <%- include('title') %>
         <table id="table_ticker" class="table table-hover text-center">
             <thead>
                 <tr>
@@ -17,7 +21,7 @@
             </tbody>
         </table>
     </body>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascripts/list.js"></script>
-
-    </html>
+    <script src="/javascripts/trade.js"></script>
+</html>

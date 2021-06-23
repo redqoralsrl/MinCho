@@ -9,7 +9,7 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const chartRouter = require('./routes/chart');
 const supportRouter = require('./routes/support');
-const listRouter = require('./routes/list');
+const tradeRouter = require('./routes/trade');
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/chart', chartRouter);
 app.use('/support', supportRouter);
-app.use('/list', listRouter);
+app.use('/trade', tradeRouter);
 
 // 세션 (미들웨어)
 app.use(session({

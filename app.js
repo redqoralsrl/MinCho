@@ -8,6 +8,7 @@ const api = require('binance'); // npm i github:karthik947/binance#master
 const indexRouter = require('./routes/index');
 const chartRouter = require('./routes/chart');
 const loginRouter = require('./routes/login');
+const supportRouter = require('./routes/support');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/chart', chartRouter);
 app.use('/login', loginRouter);
+app.use('/support', supportRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

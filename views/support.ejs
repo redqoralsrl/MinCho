@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객지원</title>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/supportStyle.css' />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <%- include('title') %>
+
+    <div class="subMain">
+        <section class="support_sidenav">
+            <h3>고객지원</h3>
+            <div class="support_tab">
+                <ul class="tabs">
+                    <li class="active" rel="tab1"><a href="#">공지사항</a></li>
+                    <li rel="tab2"><a href="#">소식</a></li>
+                    <li rel="tab3"><a href="#">이용안내</a></li>
+                    <li rel="tab4"><a href="#">Q&A</a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="support_main">
+            <div class="inner">
+                <div id="tab1" class="tab_content">
+                    <h3>공지사항</h3>
+                    <div class="table">
+                        <table class="inner_table">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>등록일</th>
+                                    <!-- <th>조회수</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="Align">
+                                        [안내] 민초 거래소에 오신 것을 환영합니다.
+                                    </td>
+                                    <td>2021.06.23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="tab2" class="tab_content">
+                    <h3>소식</h3>
+                    <div class="table">
+                        <table class="inner_table">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>등록일</th>
+                                    <!-- <th>조회수</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="Align">
+                                        [뉴스] 블록체인 기반 핀테크 및 응용 SW 개발자 양성과정 참여자들, 민초 거래소 설립
+                                    </td>
+                                    <td>2021.06.23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="tab3" class="tab_content">
+                    <h3>이용안내</h3>
+                    <span class="boxTab half">
+                        <ul>
+                            <li class="mid">
+                                <a href="#" class="active">거래 이용안내</a>
+                            </li>
+                            <li class="mid">
+                                <a href="#" class="active">입출금 이용안내</a>
+                            </li>
+                        </ul>
+                    </span>
+                    <div class="guide_content">
+                        <p>1. 마켓 구분</p>
+                        <p><span class="tit">민초 거래소는 KRW 마켓, 즉 원화로 디지털 자산을 사고팔 수 있습니다.</span></p>
+                        <p>2. 일별 거래 데이터 기준</p>
+                        <p>민초는 업비트와 동일하게 UTC(협정세계시)를 기준으로 일별 데이터를 계산합니다. 대다수의 글로벌 거래소들이 UTC 기준 시간을 사용하고 있어 해외 시세 비교에 용이한 장점이 있습니다. UTC는 한국시간(KST)보다 9시간이 느립니다.</p>
+                        <li><span class="tit">전일대비 등락률 :</span> UTC 기준 0시(=한국시간 오전 9시) 종가 대비 당일 종가(혹은 현재가) 등락률</li> 
+                        <li><span class="tit">거래대금 :</span> 최근 24시간 동안의 누적 거래대금</li> 
+                        <li><span class="tit">캔들차트 일봉 :</span> UTC 기준 0시부터 24시간(혹은 현재시점) 동안의 시가/고가/저가/종가</li> 
+                        <p>3. 거래수수료</p>
+                        <ul>
+                            <li><span class="tit">민초 거래소의 거래수수료는 0.05%입니다.</span></li>
+                            <li><span class="tit">거래수수료 계산방식:</span> 체결금액(주문수량 x 주문가격) x 거래수수료율(%)
+                                <br/>- 거래수수료는 소수점 둘째 자리까지 표시됩니다.
+                            </li>
+                            <li><span class="tit">거래수수료 정산방식:</span>
+                                매수 주문 시 정산금액 = 체결금액(주문수량 x 주문가격) + 거래수수료<br/>
+                                예시) 1BTC를 10,000,000원에 매수(거래수수료 0.139%) 시 내 계정에 1BTC 반영, 10,013,900원 차감<br/>
+                                매도 주문 시 정산금액 = 체결금액(주문수량 x 주문가격) – 거래수수료<br/>
+                                예시) 1BTC를 10,000,000원에 매도(거래수수료 0.139%) 시 내 계정에 9,986,100원 반영, 1 BTC 차감</li>
+                            <li><span class="tit">거래수수료는 이벤트에 따라 달라질 수 있습니다.</span></li>
+                        </ul>
+                        <p>6. 호가 표시 단위</p>
+                        <div class="box6">
+                            <strong>KRW 마켓(코인 가격에 따라 구분)</strong>
+                            <div class="table">
+                                <table class="inner_table">
+                                    <thead>
+                                        <tr>
+                                            <th>코인 1개 가격</th>
+                                            <th>호가 단위</th>
+                                            <!-- <th>조회수</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>2,000,000원 이상</th>
+                                            <td>1,000원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>1,000,000원 이상~2,000,000원 미만</th>
+                                            <td>500원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>500,000원 이상~1,000,000원 미만</th>
+                                            <td>100원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>100,000원 이상~500,000원 미만</th>
+                                            <td>50원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>10,000원 이상~100,000원 미만</th>
+                                            <td>10원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>1,000원 이상~10,000원 미만</th>
+                                            <td>5원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>1,000원 미만</th>
+                                            <td>1원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>100원 미만</th>
+                                            <td>0.1원</td>
+                                        </tr>
+                                        <tr>
+                                            <th>10원 미만</th>
+                                            <td>0.01원</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab4" class="tab_content">
+                    <h3>Q&A</h3>
+                    <div class="table">
+                        <table class="inner_table">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>등록일</th>
+                                    <!-- <th>조회수</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="Align">
+                                        [안내] 민초 거래소에 오신 것을 환영합니다.
+                                    </td>
+                                    <td>2021.06.23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="/javascripts/active.js"></script>
+</html>

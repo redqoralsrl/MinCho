@@ -1,0 +1,106 @@
+table{
+    border-collapse: collapse;
+}
+
+body{
+    background-color: #eeeeee;
+}
+.subMain{
+    display: block;
+    width: 1170px;
+    margin: 72px auto 0;
+    min-height: calc(100vh - 301px);
+    transition: all .4s ease-out;
+}
+
+.subMain .support_sidenav{
+    display: block;
+    float: left;
+    width: 192px;
+    min-height: auto;
+    box-shadow: 2px 2px 4px #dee1e7;
+}
+.subMain .support_sidenav h3{
+    height: 80px;
+    padding-left: 30px;
+    color: #fff;
+    background-color: #525f6e;
+    line-height: 74px;
+    font-size: 20px;
+    /* font-weight: 500; */
+}
+.subMain .support_sidenav .support_tab{
+    width: 100%;
+    padding: 16px 0;
+    background-color: #fff;
+}
+.subMain .support_sidenav .support_tab li{
+    display: block;
+    height: 44px;
+    padding-left: 30px;
+    line-height: 44px;
+}
+.subMain .support_sidenav .support_tab li a{
+    color: #333;
+}
+.subMain .support_tab li:hover{
+    background-color: rgb(230, 230, 230);
+}
+.subMain .support_main{
+    float: right;
+    width: 960px;
+    min-height: 500px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px #dee1e7;
+}
+.subMain .support_main .inner{
+    width: 860px;
+    margin: 0 auto;
+    padding: 40px 0 45px;
+}
+.subMain .support_main .inner h3{
+    height: 40px;
+    font-size: 27px;
+    line-height: 40px;
+    font-weight: 700;
+}
+.subMain .inner_table{
+    width: 100%;
+    margin: 14px 0 0;
+    border-top: 2px solid #9b9fa8;
+}
+.subMain .inner_table thead th{
+    height: 38px;
+    color: #666;
+    font-weight: 400;
+    padding: 4px 0;
+    background-color: #f9fafc;
+    border-bottom: 1px solid #e8e8ec;
+    font-size: 14px;
+}
+.subMain .inner_table tbody td{
+    height: 50px;
+    font-size: 14px;
+    border-bottom: 1px solid #e8e8ec;
+    text-align: center;
+}
+.subMain .inner_table tbody td.Align{
+    padding-left: 20px;
+    text-align: left;
+    font-weight: 700;
+}
+
+/* active */
+.support_tab ul.tabs li.active{
+    background-color: #f3f3f3;
+}
+.support_tab ul.tabs li.active a {
+    font-weight: 700;
+    color:rgb(77, 157, 223);
+}
+.support_tab .inner .tab_content{
+    padding: 10px;
+    display: none;
+    font-size: 15px;
+}

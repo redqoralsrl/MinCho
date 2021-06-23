@@ -1,6 +1,6 @@
 const chartProperties = {
     width:700,
-    height:300,
+    height:400,
     timeScale:{
         timeVisible:true,
         secondVisible:false,

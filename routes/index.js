@@ -9,4 +9,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/login', function(req, res, next){
+  res.render('login',{
+    title : ejs.render('title')
+  })
+});
+
 module.exports = router;

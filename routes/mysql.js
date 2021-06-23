@@ -5,7 +5,7 @@ const  client = mysql.createConnection({
     port : 3306,
     user : 'root',
     password : 'brian1313',
-    database : 'sublogin',
+    database : 'mincho',
     multipleStatements: true,
 });
 

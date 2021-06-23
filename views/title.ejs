@@ -8,6 +8,10 @@
         <li>my trade</li>
         <li>trends</li>
         <li>support</li>
+        <% if(logined == true) { %>
+        <a href="/logout"><li>로그아웃</li></a>
+        <% } else { %>
         <a href="/login"><li>로그인/회원가입</li></a>
+        <% } %>
     </ul>
 </div>

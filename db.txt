@@ -1,0 +1,6 @@
+// 유저 DB
+create table userdb(
+    id varchar(20) not null primary key,
+    name varchar(20) not null,
+    pw varchar(300) not null
+);

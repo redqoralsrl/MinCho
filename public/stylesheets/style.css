@@ -18,14 +18,23 @@
   /* width: 250px; */
 }
 .header_area ul{
+  font-weight: bolder;
   display: flex;
   justify-content: space-around;
   width: 50%;
   align-items: center;
   list-style: none;
 }
+.header_area ul a{
+  text-decoration: none;
+  color: #000;
+}
+.header_area ul a:hover{
+  color: #24c0eb;
+}
 
 #chart{
   margin-left: 10px;
   margin-top: 10px;
 }
+

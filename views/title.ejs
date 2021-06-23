@@ -1,11 +1,17 @@
 <div class="header_area">
-    <img src="/images/mincho_transparent.png">
+    <a href="/">
+        <img src="/images/mincho_transparent.png">
+    </a>
     <ul>
         <li>trade</li>
         <li>wallet</li>
         <li>my trade</li>
         <li>trends</li>
         <a href="/support"><li>support</li></a>
-        <a href="/login"><li>signin/signup</li></a>
+        <% if(logined == true) { %>
+        <a href="/logout"><li>로그아웃</li></a>
+        <% } else { %>
+        <a href="/login"><li>로그인/회원가입</li></a>
+        <% } %>
     </ul>
 </div>

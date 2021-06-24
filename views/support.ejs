@@ -24,7 +24,7 @@
                     <li class="active" rel="tab1"><a href="#">공지사항</a></li>
                     <li rel="tab2"><a href="#">소식</a></li>
                     <li rel="tab3"><a href="#">이용안내</a></li>
-                    <li rel="tab4"><a href="#">Q&A</a></li>
+                    <!-- <li rel="tab4"><a href="#">Q&A</a></li> -->
                 </ul>
             </div>
         </section>
@@ -79,21 +79,23 @@
                     <span class="boxTab half">
                         <ul>
                             <li class="mid">
-                                <a href="#" class="active">거래 이용안내</a>
+                                <a href="#" class="active" rel="guide1">거래 이용안내</a>
                             </li>
                             <li class="mid">
-                                <a href="#" class="active">입출금 이용안내</a>
+                                <a href="#" rel="guide2">입출금 이용안내</a>
                             </li>
                         </ul>
                     </span>
-                    <div class="guide_content">
+                    <div class="guide_content" id="guide1">
                         <p>1. 마켓 구분</p>
-                        <p><span class="tit">민초 거래소는 KRW 마켓, 즉 원화로 디지털 자산을 사고팔 수 있습니다.</span></p>
+                        <span class="tit">민초 거래소는 KRW 마켓, 즉 원화로 디지털 자산을 사고팔 수 있습니다.</span>
                         <p>2. 일별 거래 데이터 기준</p>
-                        <p>민초는 업비트와 동일하게 UTC(협정세계시)를 기준으로 일별 데이터를 계산합니다. 대다수의 글로벌 거래소들이 UTC 기준 시간을 사용하고 있어 해외 시세 비교에 용이한 장점이 있습니다. UTC는 한국시간(KST)보다 9시간이 느립니다.</p>
-                        <li><span class="tit">전일대비 등락률 :</span> UTC 기준 0시(=한국시간 오전 9시) 종가 대비 당일 종가(혹은 현재가) 등락률</li> 
-                        <li><span class="tit">거래대금 :</span> 최근 24시간 동안의 누적 거래대금</li> 
-                        <li><span class="tit">캔들차트 일봉 :</span> UTC 기준 0시부터 24시간(혹은 현재시점) 동안의 시가/고가/저가/종가</li> 
+                        <span class="tit">민초는 업비트와 동일하게 UTC(협정세계시)를 기준으로 일별 데이터를 계산합니다. 대다수의 글로벌 거래소들이 UTC 기준 시간을 사용하고 있어 해외 시세 비교에 용이한 장점이 있습니다. UTC는 한국시간(KST)보다 9시간이 느립니다.</span>
+                        <ul>
+                            <li><span class="tit">전일대비 등락률 :</span> UTC 기준 0시(=한국시간 오전 9시) 종가 대비 당일 종가(혹은 현재가) 등락률</li> 
+                            <li><span class="tit">거래대금 :</span> 최근 24시간 동안의 누적 거래대금</li> 
+                            <li><span class="tit">캔들차트 일봉 :</span> UTC 기준 0시부터 24시간(혹은 현재시점) 동안의 시가/고가/저가/종가</li> 
+                        </ul>
                         <p>3. 거래수수료</p>
                         <ul>
                             <li><span class="tit">민초 거래소의 거래수수료는 0.05%입니다.</span></li>
@@ -161,27 +163,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="tab4" class="tab_content">
-                    <h3>Q&A</h3>
-                    <div class="table">
-                        <table class="inner_table">
-                            <thead>
-                                <tr>
-                                    <th>제목</th>
-                                    <th>등록일</th>
-                                    <!-- <th>조회수</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="Align">
-                                        [안내] 민초 거래소에 오신 것을 환영합니다.
-                                    </td>
-                                    <td>2021.06.23</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="guide_content" id="guide2">
+                        <p>입출금 지원 자산</p>
+                        <ul>
+                            현재 민초에서는 7가지 자산의 입출금을 지원합니다.
+                            <li>KRW, BTC, ETH, XRP, LTC, TMC, DOGE</li>
+                        </ul>
                     </div>
                 </div>
             </div>

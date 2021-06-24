@@ -9,7 +9,11 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const chartRouter = require('./routes/chart');
 const supportRouter = require('./routes/support');
+<<<<<<< HEAD
 const tradeRouter = require('./routes/trade');
+=======
+const trendsRouter = require('./routes/trends');
+>>>>>>> 7adb570315c75477f704bc171e933479eefb3d60
 
 const app = express();
 
@@ -26,7 +30,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/chart', chartRouter);
 app.use('/support', supportRouter);
+<<<<<<< HEAD
 app.use('/trade', tradeRouter);
+=======
+app.use('/trends', trendsRouter);
+>>>>>>> 7adb570315c75477f704bc171e933479eefb3d60
 
 // 세션 (미들웨어)
 app.use(session({

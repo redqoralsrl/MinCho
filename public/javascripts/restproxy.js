@@ -7,7 +7,8 @@ var url = require("url");
 var app = express();
 var server = app.listen(9665,function(){
     console.log('PROXY ACTIVATED');
-    console.log('http://127.0.0.1:9665/fetchAPI?endpoint=PDLduYkIyWI5H5jv3l62ALhIplQw6hDxseKRXoadmRpmH1jzJY1b4Om2k33JelSF');
+    console.log('http://127.0.0.1:9665/fetchAPI?endpoint=PDLduYkIyWI5H5jv3l62ALhIplQw6hDxseKRXoadmRpmH1jzJY1b4Om2k33JelSF'); // Binance API Key
+    // console.log('http://127.0.0.1:9665/fetchAPI?endpoint=npU6G4vDY4jFHYLWSlPZ8JSLIe8u6N6kAfxAOFIs'); // Upbit API Access Key
 });
 
 app.use(cors());

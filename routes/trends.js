@@ -127,7 +127,6 @@ cheerio_httpcli.fetch(url3, param3, function (err, $, res) {
       cr_writer : cr_writer
     }
   }
-  console.log(result3);
 });
 
 //블록미디어 크롤링

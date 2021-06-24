@@ -1,0 +1,14 @@
+body{
+    background-color: #eeeeee;
+}
+.trends-container{
+    position: relative;
+    width: 1400px;
+    margin: 0 auto;
+    padding-top: 72px;
+    transition: all .4s ease-out;
+}
+.left{
+    width: 990px;
+    float: left;
+}

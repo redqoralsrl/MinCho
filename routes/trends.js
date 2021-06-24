@@ -13,14 +13,14 @@ router.use(session({
   saveUninitialized: true, // 세션이 필요할 때 세션을 실행시킨다(서버에 부담을 줄인다)
 }));
 
+// 그래프 크롤링
 const url = 'https://finance.naver.com/marketindex/';
 const param = {};
-let result =[];
+let result = [];
 cheerio_httpcli.fetch(url,param,function(err,$,res,body){
-  let WTI_img = "";
-  let WTI_span = "";
-  let WTI_change = "";
-  let WTI_blind = "";
+  let data = [];
+  let WTI_img = "", WTI_span = "", WTI_change = "", WTI_blind = "", WTI_name = "";
+  // WTI
     $('#oilGoldList > li.on > a.graph_img > img').each(function(post){
         WTI_img = $(this).attr('src');
     })
@@ -33,10 +33,74 @@ cheerio_httpcli.fetch(url,param,function(err,$,res,body){
     $('#oilGoldList > li.on > a.head.wti > div > span.blind').each(function(post){
         WTI_blind = $(this).text();
     })
-    console.log('111111111',WTI_img);
-    console.log('2222222',WTI_span);
-    console.log('3333333', WTI_change);
-    console.log('44444',WTI_blind);
+    $('#oilGoldList > li.on > a.head.wti > h3').each(function(post){
+        WTI_name = $(this).text();
+    })
+    data.push(WTI_img);
+    data.push(WTI_span);
+    data.push(WTI_change);
+    data.push(WTI_blind);
+    data.push(WTI_name);
+    result.push(data);
+    data = [];
+  // 달러 / 일본 엔
+    $('#worldExchangeList > li.on > a.graph_img > img').each(function(post){
+        WTI_img = $(this).attr('src');
+    })
+    $('#worldExchangeList > li.on > a.head.jpy_usd > div > span.value').each(function(post){
+        WTI_span = $(this).text();
+    })
+    $('#worldExchangeList > li.on > a.head.jpy_usd > div > span.change').each(function(post){
+        WTI_change = $(this).text();
+    })
+    $('#worldExchangeList > li.on > a.head.jpy_usd > div > span.blind').each(function(post){
+        WTI_blind = $(this).text();
+    })
+    $('#worldExchangeList > li.on > a.head.jpy_usd > h3').each(function(post){
+        WTI_name = $(this).text();
+    })
+    data.push(WTI_img);
+    data.push(WTI_span);
+    data.push(WTI_change);
+    data.push(WTI_blind);
+    data.push(WTI_name);
+    result.push(data);
+    data = [];
+    // 미국 USD
+    $('#exchangeList > li.on > a.graph_img > img').each(function(post){
+        WTI_img = $(this).attr('src');
+    })
+    $('#exchangeList > li.on > a.head.usd > div > span.value').each(function(post){
+        WTI_span = $(this).text();
+    })
+    $('#exchangeList > li.on > a.head.usd > div > span.change').each(function(post){
+        WTI_change = $(this).text();
+    })
+    $('#exchangeList > li.on > a.head.usd > div > span.blind').each(function(post){
+        WTI_blind = $(this).text();
+    })
+    $('#exchangeList > li.on > a.head.usd > h3').each(function(post){
+        WTI_name = $(this).text();
+    })
+    data.push(WTI_img);
+    data.push(WTI_span);
+    data.push(WTI_change);
+    data.push(WTI_blind);
+    data.push(WTI_name);
+    result.push(data);
+});
+
+// 뉴스 공지사항 크롤링
+const url2 = 'https://www.coinreaders.com/index.html';
+let news_notice = [];
+cheerio_httpcli.fetch(url2,param,function(err,$,res,body){
+  let news = "", news1 = "";
+  for(let i = 2; i < 7; i++){
+    $(`#contents > div > div > center > div.main2_coin_sise > div > div:nth-child(${i}) > dl > dt > a`).each(function(post){
+      news = $(this).text();
+    })
+    news_notice.push(news);
+  }
 });
 
 // 코인리더스 크롤링
@@ -125,13 +189,17 @@ router.get('/', function(req, res, next) {
     res.render('trends',{
       logined : true,
       title : ejs.render('title'),
-      cr_news : result2
+      cr_news : result2,
+      result : result,
+      news_notice : news_notice,
     });
   }else{
     res.render('trends',{
       logined : false,
       title : ejs.render('title'),
-      cr_news : result2
+      cr_news : result2,
+      result : result,
+      news_notice : news_notice,
     });
   }
 });

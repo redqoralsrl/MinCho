@@ -104,10 +104,10 @@ cheerio_httpcli.fetch(url2,param,function(err,$,res,body){
 });
 
 // 코인리더스 크롤링
-let url2 = 'https://www.coinreaders.com/sub_view.html'; 
-var param2 = {};
-let result2 = [];
-cheerio_httpcli.fetch(url2, param2, function (err, $, res) {
+let url3 = 'https://www.coinreaders.com/sub_view.html'; 
+var param3 = {};
+let result3 = [];
+cheerio_httpcli.fetch(url3, param3, function (err, $, res) {
   if (err) { 
       console.log(err); 
       return; 
@@ -120,14 +120,14 @@ cheerio_httpcli.fetch(url2, param2, function (err, $, res) {
     cr_title = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.title > a.link').text();
     cr_context = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.body > a.link').text();
     cr_writer = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.write > a.link').text();
-    result2[i-1] = {
+    result3[i-1] = {
       cr_img : cr_img,
       cr_title : cr_title,
       cr_context : cr_context,
       cr_writer : cr_writer
     }
   }
-  console.log(result2);
+  console.log(result3);
 });
 
 //블록미디어 크롤링
@@ -189,7 +189,7 @@ router.get('/', function(req, res, next) {
     res.render('trends',{
       logined : true,
       title : ejs.render('title'),
-      cr_news : result2,
+      cr_news : result3,
       result : result,
       news_notice : news_notice,
     });
@@ -197,7 +197,7 @@ router.get('/', function(req, res, next) {
     res.render('trends',{
       logined : false,
       title : ejs.render('title'),
-      cr_news : result2,
+      cr_news : result3,
       result : result,
       news_notice : news_notice,
     });

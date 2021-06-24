@@ -8,9 +8,9 @@
 .header_area{
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  border-bottom: 1.5px solid #dcdcdc;
   background-color: #fff;
-  padding: 10px 0 10px 15px;
+  padding: 15px 0 15px 20px;
 }
 .header_area img{
   height: 40px;
@@ -27,7 +27,7 @@
 }
 .header_area ul a{
   text-decoration: none;
-  color: #000;
+  color: rgb(54, 54, 54);
 }
 .header_area ul a:hover{
   color: #24c0eb;

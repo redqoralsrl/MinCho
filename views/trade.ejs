@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <title>Trade</title>
+    </head>
+
+    <body>
+        <%- include('title') %>
+
+        <h3>BTC Charts</h3>
+
+        <div id="chart_selector">
+            <select id="chart_en_name_select" name="chart_en_name">
+                <option value="KRW-BTC">Bitcoin</option>
+                <option value="KRW-ETH">Ethereum</option>
+                <option value="KRW-LTC">Litecoin</option>
+                <option value="KRW-XRP">Ripple</option>
+                <option value="KRW-DOGE">Dogecoin</option>
+                <option value="KRW-BCH">Timocoin</option>
+            </select>
+
+            <select id="chart_time_select" name="chart_time">
+                <option value="minutes/1?">1 minute</option>
+                <option value="minutes/3?">3 minute</option>
+                <option value="minutes/5?">5 minute</option>
+                <option value="minutes/10?">10 minute</option>
+                <option value="minutes/15?">15 minute</option>
+                <option value="minutes/30?">30 minute</option>
+                <option value="minutes/60?">60 minute</option>
+                <option value="minutes/240?">240 minute</option>
+                <option value="days?">1 day</option>
+                <option value="weeks?">1 week</option>
+                <option value="months?">1 month</option>
+            </select>
+
+            <button id="chart_selector_btn">search</button>
+        </div>
+        
+        <div id="chart">
+        </div>
+        
+        <table border=1 id="table_ticker" class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <td>영문명</td>
+                    <td>현재가</td>
+                    <td>전일대비</td>
+                    <td>거래대금</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div 
+            id="coinmarketcap-widget-marquee" 
+            coins="1,1027,52,2,74" 
+            currency="USD" 
+            theme="light" 
+            transparent="true" 
+            show-symbol-logo="true"
+        >
+        </div>
+    </body>
+
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/trade.js"></script>
+</html>

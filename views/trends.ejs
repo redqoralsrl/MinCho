@@ -20,5 +20,14 @@
             
         </div>
     </div>
+    <div class="trends-news">
+      <% cr_news.forEach((item,index) => { %>
+        <img src="<%= item.cr_img %>">
+        <p><%= item.cr_title %></p> 
+        <p><%= item.cr_context %></p> 
+        <p><%= item.cr_writer %></p> 
+      <% }) %>
+      <div class="trends-news-card"></div>
+    </div>
   </body>
 </html>

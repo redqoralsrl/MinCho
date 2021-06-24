@@ -12,3 +12,11 @@ body{
     width: 990px;
     float: left;
 }
+.trends-news{
+    display: block;
+    width: 880px;
+    height: 100%;
+    background-color: #fff;
+    padding: 5vw;
+    margin: 0 auto;
+}

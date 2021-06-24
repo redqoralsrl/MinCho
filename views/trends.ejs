@@ -9,16 +9,48 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- 제이쿼리 -->
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <%- include('title') %>
     <div class="trends-container">
         <div class="left">
-
+          <div class="charts">
+            <% result.forEach((data,index)=>{ %>
+              <div class="chartsbox">
+                <% if(data[3] == "상승") { %>
+                <div class="red">
+                  <span id="black"><%= data[4] %></span><span><%= data[1] %></span><span><i class="fas fa-sort-up"></i><%= data[2] %></span>
+                </div>
+                <% }else{ %>
+                  <div class="blue">
+                    <span id="black"><%= data[4] %></span><span><%= data[1] %></span><span><i class="fas fa-sort-down"></i><%= data[2] %></span>
+                  </div>
+                <% } %>
+                <img src="<%= data[0] %>">
+              </div>
+            <% }) %>
+          </div>
+          <div class="notice_container">
+            <div class="notice">
+              <ul class="rolling">
+                <% news_notice.forEach((data)=>{ %>
+                  <li>
+                    <%= data %>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+            <div class="box_container">
+              <a href="#" class="rolling_stop"><i class="fas fa-stop"></i></a>
+              <a href="#" class="rolling_start"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
         </div>
         <div class="right">
-            
+            <!-- <div>안녕</div> -->
         </div>
     </div>
+    <script src="/javascripts/trends.js"></script>
   </body>
 </html>

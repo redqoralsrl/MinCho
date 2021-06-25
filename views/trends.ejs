@@ -53,16 +53,18 @@
     </div>
     <div class="trends-news">
       <% cr_news.forEach((item,index) => { %>
-        <div class="trends-news-card">
-          <div class="trends-news-img">
-            <img src="https://www.coinreaders.com/<%= item.cr_img %>">
+        <a href="https://www.coinreaders.com<%= item.cr_link %>">
+          <div class="trends-news-card">
+            <div class="trends-news-img">
+              <img src="https://www.coinreaders.com<%= item.cr_img %>">
+            </div>
+            <div class="trends-news-inf">
+              <strong class="cr_title"><%= item.cr_title %></strong>
+              <span class="cr_context"><%= item.cr_context %></span> 
+              <span class="cr_writer"><%= item.cr_writer %></span> 
+            </div>
           </div>
-          <div class="trends-news-inf">
-            <p><%= item.cr_title %></p> 
-            <p><%= item.cr_context %></p> 
-            <p><%= item.cr_writer %></p> 
-          </div>
-        </div>
+        </a>
       <% }) %>
     </div>
     <script src="/javascripts/trends.js"></script>

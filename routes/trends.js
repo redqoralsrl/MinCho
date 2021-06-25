@@ -113,16 +113,19 @@ cheerio_httpcli.fetch(url3, param3, function (err, $, res) {
       return; 
   }
   
-  let cr_img='', cr_title='', cr_context='', cr_writer='';
+  let cr_img='', cr_title='', cr_link='', cr_context='', cr_writer='';
 
   for(let i = 1; i <= 10; i++) {
     cr_img = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dt > a.link > img').attr('src');
+    cr_img = cr_img.substring(1, cr_img.length);
     cr_title = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.title > a.link').text();
+    cr_link = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.title > a.link').attr('href');
     cr_context = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.body > a.link').text();
     cr_writer = $('#news_list2_area > .news_list:nth-child('+i+') > dl > dd.write > a.link').text();
     result3[i-1] = {
       cr_img : cr_img,
       cr_title : cr_title,
+      cr_link: cr_link,
       cr_context : cr_context,
       cr_writer : cr_writer
     }

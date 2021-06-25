@@ -1,6 +1,9 @@
 body{
     background-color: #eeeeee;
 }
+a{
+    color: #111;
+}
 .trends-container{
     position: relative;
     /* width: 1400px; */
@@ -105,13 +108,14 @@ body{
 }
 .trends-news .trends-news-card{
     display: block;
-    width: 750px;
+    width: 800px;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 .trends-news .trends-news-card .trends-news-img{
     display: inline-block;
-    width: 300px;
+    vertical-align: middle;
+    width: 270px;
     height: 170px;
     object-fit: cover;
 }
@@ -122,6 +126,24 @@ body{
 }
 .trends-news .trends-news-card .trends-news-inf{
     display: inline-block;
-    width: 400px;
+    vertical-align: middle;
+    width: 500px;
     margin-left: 20px;
+}
+.trends-news .trends-news-card .trends-news-inf .cr_title{
+    display: block;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+.trends-news .trends-news-card .trends-news-inf .cr_context{
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #444;
+    letter-spacing: -.075em;
+}
+.trends-news .trends-news-card .trends-news-inf .cr_writer{
+    display: block;
+    font-size: 13px;
+    color: #0092ca;
 }

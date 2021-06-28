@@ -21,7 +21,7 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-app.io.attach(server);
+// app.io.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.

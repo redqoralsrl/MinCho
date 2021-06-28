@@ -12,35 +12,82 @@ const domElement = document.getElementById('chart');
 const chart = LightweightCharts.createChart(domElement,chartProperties);
 const candleSeries = chart.addCandlestickSeries();
 
-// 정적차트 가져오기
-fetch(`http://127.0.0.1:9665/fetchAPI?endpoint=https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=1000`)
-// fetch(`http://127.0.0.1:9665/fetchAPI?endpoint=https://api.upbit.com/v1/ticker?markets=KRW-BTC`)
-
-  .then(res => res.json())
-  .then(data => {
-    const cdata = data.map(d => {
-      return {time:d[0]/1000,open:parseFloat(d[1]),high:parseFloat(d[2]),low:parseFloat(d[3]),close:parseFloat(d[4])}
-    });
-    candleSeries.setData(cdata);
-  })
-  .catch(err => log(err));
-  
-const socket = io.connect('http://127.0.0.1:3000/');
-
-socket.on('KLINE',(pl)=>{
-    candleSeries.update(pl);
-});
-
 function chartSelector() {
     $('#chart_selector_btn').on("click", () => {
-        const name = document.getElementById("chart_en_name_select").value;
         const time = document.getElementById("chart_time_select").value;
-        console.log(name, time);
+        const name = document.getElementById("chart_en_name_select").value;
+
+        staticChart(time, name);
+    });
+}
+
+/* ===STATIC CHART================================================================== */
+function staticChart(selectTime, selectName) {
+    const time = [];
+    const open = [];
+    const high = [];
+    const low = [];
+    const close = [];
+    const data = [];
+
+    $.ajax({
+        url: `https://api.upbit.com/v1/candles/${selectTime}?market=${selectName}&count=200`,
+        dataType: "json",
+        async: false,
+    })
+    .done(function(datas) {
+        for(let i = 0; i < datas.length; i++) {
+            time[i] = datas[(datas.length-1)-i].timestamp/1000;
+            open[i] = datas[(datas.length-1)-i].opening_price;
+            high[i] = datas[(datas.length-1)-i].high_price;
+            low[i] = datas[(datas.length-1)-i].low_price;
+            close[i] = datas[(datas.length-1)-i].trade_price;
+            data.push({time: time[i], open: open[i], high: high[i], low: low[i], close: close[i]});
+        }
+
+        const staticData = data.map((data) => {
+            return {
+                time: data.time, 
+                open: data.open,
+                high: data.high,
+                low: data.low,
+                close: data.close,
+            }
+        });
+
+        candleSeries.setData(staticData);
     });
 }
 
 
-/* ===COIN LIST==================================================================== */
+/* ===WebSocket===================================================================== */
+function upbitWebSocket(selectTime, selectName) {
+    $.ajax({
+        url: "/upbitWS",
+        type: "POST",
+        dataType: "json",
+        data: { "selectTime": selectTime, "selectName": selectName },
+    })
+    .done(function(result) {
+        // console.log(result);
+        console.log("뿌엥", result.timestamp);
+        candleSeries.update({
+            time: result.timestamp/1000, 
+            open: result.opening_price, 
+            high: result.high_price, 
+            low: result.low_price, 
+            close: result.trade_price
+        });
+        // 실시간으로 잘 그려지는데 캔들이...이상함
+        // 어떤 key값을 가져와야 하는 거지?
+    })
+    .fail(function(){
+        console.log("업비트 웹소켓 에러 ㅅㄱㅂㅇ");
+    });
+}
+
+
+/* ===COIN LIST===================================================================== */
 function comma(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -96,7 +143,7 @@ function setUpbitData(){
                 rowHtml += "<td rowspan=\"2\">" + comma((tickers[i].signed_change_rate*100).toFixed(2))+"</td>";
                 rowHtml += "<td rowspan=\"2\">" 
                 + comma((tickers[i].acc_trade_price_24h > 1000000 ? ( tickers[i].acc_trade_price_24h / 1000000 ) : tickers[i].acc_trade_price_24h).toFixed(0)) 
-                + (tickers[i].acc_trade_price_24h > 1000000 ? " 백만" : "") + "</td></tr>";
+                + (tickers[i].acc_trade_price_24h > 1000000 ? "million" : "") + "</td></tr>";
                 rowHtml += "<tr><td>" + arr_market_name[i] + "</td>";
 
                 $("#table_ticker > tbody:last").append(rowHtml);
@@ -107,10 +154,18 @@ function setUpbitData(){
         console.log("[ ERROR ] UPbit API connect error");
     });
 
-    setTimeout(setUpbitData, 1000);
+    setTimeout(setUpbitData, 2000);
 }
 
+/* ===FUNC CALL===================================================================== */
 $(function() {
-    setUpbitData();
     chartSelector();
+    setUpbitData();
+    staticChart("minutes/1", "KRW-BTC");
+    // upbitWebSocket("5000", "KRW-BTC");
+    function aa() {
+        upbitWebSocket("5000", "KRW-BTC");
+    }
+    setInterval(aa, 3000);
+
 });

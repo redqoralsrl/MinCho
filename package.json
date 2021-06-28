@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \" node ./index \" \" node ./public/javascripts/restproxy \""
+    "start": "node ./index"
   },
   "dependencies": {
-    "binance": "github:karthik947/binance#master",
     "cheerio-httpcli": "^0.8.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -19,7 +18,8 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "request-promise": "^4.2.6",
-    "socket.io": "^2.4.1"
+    "socket.io": "^2.4.1",
+    "ws": "^7.5.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",

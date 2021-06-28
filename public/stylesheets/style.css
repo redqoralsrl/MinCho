@@ -50,4 +50,13 @@
   margin-left: 10px;
   margin-top: 10px;
 }
+.mySlides {
+  display:none;
+}
+.w3-section{
+  padding: 10px;
+}
+.w3-section img{
+  border-radius: 10px 10px;
+}
 

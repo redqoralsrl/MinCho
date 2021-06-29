@@ -56,7 +56,7 @@
     grid-template-columns :1fr 2fr 1fr;
     grid-template-rows : 1fr;
   }
-  /* .mainB section.left{
+  .mainB section.left{
     float: left;
     width: 990px;
   }
@@ -128,4 +128,4 @@
 }
 .mainB section .halfB .rightB.sizeUp {
     width: 425px;
-} */
+}

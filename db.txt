@@ -25,7 +25,7 @@ balance : 잔고
 create table trade(
     num bigint(20) unsigned not null auto_increment primary key,
     id varchar(20) not null,
-    name vaerchar(20) not null,
+    name varchar(20) not null,
     sell_buy varchar(4) not null,
     coin_name varchar(20) not null,
     date timestamp not null DEFAULT current_timestamp,

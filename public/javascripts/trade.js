@@ -70,13 +70,13 @@ function upbitWebSocket(selectTime, selectName) {
     })
     .done(function(result) {
         // console.log(result);
-        console.log("뿌엥", result.timestamp);
+        console.log("뿌엥", result);
         candleSeries.update({
-            time: result.timestamp/1000, 
-            open: result.opening_price, 
-            high: result.high_price, 
-            low: result.low_price, 
-            close: result.trade_price
+            time: Math.round(result.timestamp/1000), 
+            open: parseFloat(result.opening_price), 
+            high: parseFloat(result.high_price), 
+            low: parseFloat(result.low_price), 
+            close: parseFloat(result.trade_price)
         });
         // 실시간으로 잘 그려지는데 캔들이...이상함
         // 어떤 key값을 가져와야 하는 거지?

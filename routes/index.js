@@ -45,13 +45,21 @@ router.post('/login', function(req, res, next){
     if(err) console.log(err);
     if(data != ""){
       if(data[0].id == id && data[0].pw == pass_cry){
-        req.session.id = data[0].id;
+        console.log("data[0] ==>",data[0])
+        req.session.userId = data[0].id;
         req.session.pw = data[0].pw;
+        req.session.name = data[0].name;
+        req.session.balance = data[0].balance;
+        // req.session.amount_money = data[0].amount_money;
+        // req.session.withdraw_deposit = data[0].withdraw_deposit;
+        // req.session.date = data[0].date;
         req.session.logined = true;
         req.session.save();
+        console.log('로그인... ==>',req.session);
         res.render('index',{
           logined : true,
           title : ejs.render('title')
+          
         });
       }else{
         res.send('<script>alert("아이디 비밀번호 불일치!");history.back();</script>');

@@ -9,7 +9,7 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const chartRouter = require('./routes/chart');
 const supportRouter = require('./routes/support');
-
+const walletRouter = require('./routes/wallet');
 const app = express();
 
 // view engine setup
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/chart', chartRouter);
 app.use('/support', supportRouter);
-
+app.use('/wallet', walletRouter);
 // 세션 (미들웨어)
 app.use(session({
   secret: 'blackzat', // 데이터를 암호화 하기 위한 필요한 옵션

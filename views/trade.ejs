@@ -75,7 +75,7 @@
                 <form id="buy" action="">
                     <h3>매수</h3>
                     <div>
-                        <div>주문가능</div>
+                        <div id="leftdiv">주문가능</div>
                         <div>
                             <% if(logined == true){ %>
                                 <% if(data != ""){ %>
@@ -89,20 +89,22 @@
                         </div>
                     </div>
                     <div class="price_order">
-                        <div>주문가격</div>
+                        <div id="leftdiv">주문가격</div>
                         <div class="coin_value"></div>
                     </div>
                     <div>
-                        <div>주문수량</div>
-                        <input type="number"><br>
-                        <input type="button" value="25%">
-                        <input type="button" value="50%">
-                        <input type="button" value="75%">
-                        <input type="button" value="100%">
+                        <div id="leftdiv">주문수량</div>
+                        <input type="number" style="width: 80%;"> 개<br>
+                        <div class="centerdiv">
+                            <input onclick="" id="per" type="button" value="25%">
+                            <input onclick="" id="per" type="button" value="50%">
+                            <input onclick="" id="per" type="button" value="75%">
+                            <input onclick="" id="per" type="button" value="100%">
+                        </div>
                     </div>
                     <div>수수료 : 0.05%</div>
                     <br>
-                    <input type="submit" value="매수">
+                    <input class="endbtn" type="submit" value="매수">
                 </form>
                 <form id="sell" action="">
                     <h3>매도</h3>

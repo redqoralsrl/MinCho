@@ -5,7 +5,7 @@
   list-style: none;
 }
 /* header */
-.header_area{
+/* .header_area{
   display: flex;
   justify-content: space-between;
   border-bottom: 1.5px solid #dcdcdc;
@@ -15,7 +15,6 @@
 .header_area img{
   height: 40px;
   align-items: center;
-  /* width: 250px; */
 }
 .header_area ul{
   font-weight: bolder;
@@ -31,7 +30,67 @@
 }
 .header_area ul a:hover{
   color: #24c0eb;
+} */
+.navbar{
+  font-weight: bolder;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 8px 12px;
 }
+.navbar_logo img{
+  height: 40px;
+}
+.navbar a{
+  text-decoration: none;
+  color: #000;
+}
+.navbar_menu{
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+.navbar_menu li{
+  padding: 8px 12px;
+}
+.navbar_menu li:hover{
+  background-color: #68deff;
+  border-radius: 4px;
+}
+.navbar__toogleBtn{
+  display: none;
+  position: absolute;
+  right: 32px;
+  font-size: 24px;
+  color: #24c0eb;
+}
+@media screen and (max-width: 768px) {
+  .navbar{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+  }
+  .navbar_menu{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .navbar_menu li{
+    width: 100%;
+    text-align: center;
+  }
+  .navbar__toogleBtn{
+    display: block;
+  }
+
+  .navbar_menu.active{
+    display: flex;
+  }
+}
+
+
 /* main */
 .body_cont{
   width: 100%;
@@ -139,10 +198,44 @@
   justify-content: space-around;
 }
 #buy{
-  border : 1px solid #dcdc;
+  border : 2px solid #fff;
   background: rgb(255, 183, 183);
   padding: 20px;
   border-radius: 10px 10px;
+  text-align: right;
+  font-weight: bolder;
+}
+#buy h3{
+  text-align: center;
+}
+#leftdiv{
+  text-align: left;
+}
+.centerdiv{
+  text-align: center;
+}
+#per{
+  padding: 4px;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid black;
+  border-radius: 3px 3px;
+  width: 45px;
+  margin-top: 2px;
+}
+#per:hover{
+  background: rgb(255, 183, 183);
+  color: #fff;
+}
+.endbtn{
+  width: 100%;
+  font-weight: bolder;
+  font-size: 15px;
+  border-radius: 5px 5px;
+}
+.endbtn:hover{
+  background: rgb(255, 183, 183);
+  color: #fff;
 }
 #sell{
   border : 1px solid #dcdc;

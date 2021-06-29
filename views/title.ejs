@@ -1,17 +1,24 @@
-<div class="header_area">
-    <a href="/">
-        <img src="/images/mincho_transparent.png">
-    </a>
-    <ul>
-        <a href="/trade"><li>trade</li></a>
-        <a href="/wallet"><li>wallet</li></a>
-        <li>my trade</li>
-        <a href="/trends"><li>trends</li></a>
-        <a href="/support"><li>support</li></a>
+<div class="navbar">
+    <div class="navbar_logo">
+        <a href="/">
+            <img src="/images/mincho_transparent.png">
+        </a>
+    </div>
+    <ul class="navbar_menu">
+        <li><a href="/trade">trade</a></li>
+        <li><a href="/wallet">wallet</a></li>
+        <li><a href="#">my trade</a></li>
+        <li><a href="/trends">trends</a></li>
+        <li><a href="/support">support</a></li>
         <% if(logined == true) { %>
-        <a href="/logout"><li>로그아웃</li></a>
+            <li><a href="/logout">로그아웃</a></li>
         <% } else { %>
-        <a href="/login"><li>로그인/회원가입</li></a>
+            <li><a href="/login">로그인/회원가입</a></li>
         <% } %>
     </ul>
+    <a href="#" class="navbar__toogleBtn">
+        <i class="fas fa-bars"></i>
+    </a>
 </div>
+<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+<script src="/javascripts/title.js"></script>

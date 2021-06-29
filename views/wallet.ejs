@@ -1,0 +1,162 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+    <link rel='stylesheet' href='/stylesheets/wallet.css' />
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <script>
+        $(document).ready(function(){
+            $('#deposit').on('click',()=>{
+                console.log('입금처리');
+                $.ajax({
+                    url: '/wallet/deposit',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {'data': $('#num').val()},
+                    success: (result)=>{
+                        if(result['result'] == true){
+                            alert('입금완료!');
+                        }
+                        location.reload('/wallet');
+                    }
+                });
+            });
+            $('#withdraw').on('click',()=>{
+                console.log('출금처리');
+                $.ajax({
+                    url: '/wallet/withdraw',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {'data': $('#num1').val()},
+                    success: (result)=>{
+                        if(result['result'] == true){
+                            alert('출금완료!');
+                        }else{
+                            alert('출금실패');
+                        }
+                        location.reload('/wallet');
+                    }
+                });
+            });
+            
+
+        });
+    </script>
+</head>
+
+<body>
+    <%- include('title') %>
+    
+    <div>
+        <div class="mainB">
+            <section class="left">
+                <div class="half_left">
+                    <div class="left_chart">
+                        <article>
+                            <div class="scrollB">
+                                <div style="position: relative; overflow: hidden; width: 100%; height: 870px;">
+                                    <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
+                                        <span class="totalB">
+                                            <strong>총 보유 자산</strong>
+                                            <p>
+                                                
+                                                <i>KRW</i>
+                                            </p>
+                                        </span>
+                                        <span>
+                                            매수매도 공간
+                                        </span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="rightB sizup sgdB">
+                        <article>
+                            <span class="withdraw_deposit">
+                                <strong>
+                                    "KRW"
+                                    "입출금"
+                                </strong>
+                                <a href="#" class="refresh" title="새로고침">새로고침</a>
+                            </span>
+                            <span class="balance"> 
+                                <dl class="bg">
+                                    <dt class="first">
+                                        보유금액
+                                    </dt>
+                                    <dd class="first">
+                                        <strong>
+                                            <%=balance%>
+                                            <i>KRW</i><br>
+                                            <strong>
+                                              
+                                            </strong>
+                                        </strong>
+                                    </dd>
+                                </dl>
+                            </span>
+                            <span class="tabB">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="on" title="KRW충전">KRW 충전</a>
+                                        <div class="TabArea">
+                                            <form action="/wallet/deposit" method="POST">
+                                                <input  id="num" placeholder="0"name="amount_money">
+                                                <input type="submit" value="입금" id="deposit" >
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class title="출금신청">출금신청</a>
+                                        <div class="TabArea">
+                                            <form action="/wallet/withdraw" method="POST">
+                                                <input  id="num1" placeholder="0" name="amount_money">
+                                                <input type="submit" value="출금" id="withdraw" >
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class title="입출금내역">입출금내역</a>
+
+                                        <%wallet.forEach((item,index)=>{%>
+                                            <div><%=item.amount_money%></div>
+                                            <div><%=item.date%></div>
+                                            <div><%=item.withdraw_deposit%></div>
+                                        <%})%>
+                                       
+                              
+                                            
+
+
+                                    </li>
+                                </ul>
+                            </span>  
+                        </div>
+                        </article>
+
+                    </div>
+
+                </div>
+              
+              
+
+           
+
+        
+            </section>
+
+     
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+
+</body>
+</html>

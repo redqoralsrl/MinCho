@@ -11,6 +11,7 @@ const supportRouter = require('./routes/support');
 const tradeRouter = require('./routes/trade');
 const upbitWSRouter = require('./routes/upbitWS');
 const trendsRouter = require('./routes/trends');
+const walletRouter = require('./routes/wallet');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/support', supportRouter);
 app.use('/trade', tradeRouter);
 app.use('/upbitWS', upbitWSRouter);
 app.use('/trends', trendsRouter);
+app.use('/wallet', walletRouter);
 
 // 세션 (미들웨어)
 app.use(session({

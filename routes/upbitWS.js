@@ -32,7 +32,7 @@ function upbitWebSocket(name) {
 }
 
 router.post('/', function(req, res) {
-    console.log("자바스크립트에서 ajax 요청받음 ====>", req.body.selectTime, req.body.selectName);
+    console.log("자바스크립트에서 ajax 요청받음 ====>", req.body.selectName);
    
     upbitWebSocket(req.body.selectName);
     res.send(recvData);

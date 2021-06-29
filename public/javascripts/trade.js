@@ -11,13 +11,13 @@ const chartProperties = {
 const domElement = document.getElementById('chart');
 const chart = LightweightCharts.createChart(domElement,chartProperties);
 const candleSeries = chart.addCandlestickSeries();
-
+let chartname = "KRW-BTC";
 function chartSelector() {
     $('#chart_selector_btn').on("click", () => {
         const time = document.getElementById("chart_time_select").value;
-        const name = document.getElementById("chart_en_name_select").value;
+        chartname = document.getElementById("chart_en_name_select").value;
 
-        staticChart(time, name);
+        staticChart(time, chartname);
     });
 }
 
@@ -93,13 +93,12 @@ function mergeTickToBar(price, current_time) {
     candleSeries.update(currentBar);
 }
 /* ===WebSocket===================================================================== */
-function upbitWebSocket(selectTime, selectName) {
-
+function upbitWebSocket(selectName) {
     $.ajax({
         url: "/upbitWS",
         type: "POST",
         dataType: "json",
-        data: { "selectTime": selectTime, "selectName": selectName },
+        data: { "selectName": selectName },
     })
     .done(function(result) {
         // console.log(result);
@@ -196,15 +195,14 @@ function setUpbitData(){
 $(function() {
     chartSelector();
     setUpbitData();
-    staticChart("minutes/1", "KRW-BTC");
-    // upbitWebSocket("5000", "KRW-BTC");
+    staticChart("minutes/1", chartname);
     function aa() {
-        upbitWebSocket("5000", "KRW-BTC");
+        upbitWebSocket(chartname);  //이름 옵션으로 받기
     }
-    setInterval(aa, 1000);
+    setInterval(aa, 900);
     setInterval(function(){        
         mergeTickToBar(tradeprice, tradetime);
-        if(++ticksInCurrentBar === 5){
+        if(++ticksInCurrentBar === 60){
             currentIndex++;
             currentBar = {
                 open: null,
@@ -215,5 +213,5 @@ $(function() {
             };
             ticksInCurrentBar = 0;
         }
-    }, 2000);
+    }, 1000);
 });

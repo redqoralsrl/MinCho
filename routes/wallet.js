@@ -27,8 +27,8 @@ router.use(
 // });
 
 router.get("/", (req, res) => {
-  if(req.session.logined == false){
-    res.send('<script>alert("로그인 후 이용해주세요"); location.href("/");</script>')
+  if(req.session.logined != true){
+    res.send('<script>alert("로그인 후 이용해주세요"); location.replace("/");</script>')
   }else{
     client.query(
       "select * from wallet where id=? order by num desc;",

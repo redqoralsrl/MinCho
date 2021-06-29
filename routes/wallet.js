@@ -27,24 +27,29 @@ router.use(
 // });
 
 router.get("/", (req, res) => {
-  client.query(
-    "select * from wallet where id=? order by num desc;",
-    [req.session.userId],
-    (err, data) => {
-      console.log(data)
-      res.render("wallet", {
-        logined: true,
-        id: req.session.userId,
-        name: req.session.name,
-        balance: req.session.balance,
-        wallet : data,
-        // withdraw_deposit: req.session.withdraw_deposit,
-        // date : req.session.date,
-        // amount_money:req.session.amount_money,
-        title: ejs.render("title"),
-      });
-    }
-  );
+  if(req.session.logined == false){
+    res.send('<script>alert("로그인 후 이용해주세요"); location.href("/");</script>')
+  }else{
+    client.query(
+      "select * from wallet where id=? order by num desc;",
+      [req.session.userId],
+      (err, data) => {
+        if(err) console.log(err);
+        console.log(data)
+        res.render("wallet", {
+          logined: true,
+          id: req.session.userId,
+          name: req.session.name,
+          balance: req.session.balance,
+          wallet : data,
+          // withdraw_deposit: req.session.withdraw_deposit,
+          // date : req.session.date,
+          // amount_money:req.session.amount_money,
+          title: ejs.render("title"),
+        });
+      }
+    ); 
+  }
 });
 
 //입금

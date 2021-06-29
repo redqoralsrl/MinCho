@@ -6,11 +6,40 @@
         <title>Trade</title>
     </head>
 
-    <body>
+    <body class="trade_body">
         <%- include('title') %>
-
-        <h3>BTC Charts</h3>
-
+        <div class="total_box">
+            <div class="box_one">
+                <p class="viewchart">Bitcoin</p>
+                <div class="showcoin">
+                    <div class="priceone">
+                        <div class="coin_value"></div>
+                        <div class="krw"> KRW</div>
+                    </div>
+                    <div class="before">
+                        <div class="plu"></div>
+                        <div class="coin_before"></div>
+                    </div>
+                    <div class="change_d">
+                        <div class="arrow"></div>
+                        <div class="change_price"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box_two">
+                <div class="first_box">
+                    <div>고가</div>
+                    <hr>
+                    <div class="highprice red"></div>
+                </div>
+                <div class="second_box">
+                    <div>저가</div>
+                    <hr>
+                    <div class="lowprice blue"></div>
+                </div>
+            </div>
+        </div>
         <div id="chart_selector">
             <select id="chart_en_name_select" name="chart_en_name">
                 <option value="KRW-BTC">Bitcoin</option>
@@ -36,9 +65,49 @@
             </select>
 
             <button id="chart_selector_btn">search</button>
-        </div>
+        </>
         
         <div id="chart">
+        </div>
+
+        <div class="buybox">
+            <form id="buy" action="">
+                <h3>매수</h3>
+                <div>
+                    <div>주문가능</div>
+                    <div>
+                        <% if(data != []){ %>
+                            <%= data[0].balance %>
+                        <% }else { %>
+                            0
+                        <% } %>
+                        
+                            KRW
+                    </div>
+                </div>
+                <div class="price_order">
+                    <div>주문가격</div>
+                    <div class="coin_value"></div>
+                </div>
+                <div>
+                    <div>주문수량</div>
+                    <input type="number"><br>
+                    <input type="button" value="25%">
+                    <input type="button" value="50%">
+                    <input type="button" value="75%">
+                    <input type="button" value="100%">
+                </div>
+                <div>수수료 : 0.05%</div>
+                <br>
+                <input type="submit" value="매수">
+            </form>
+            <form id="sell" action="">
+                <h3>매도</h3>
+                <span>금액</span>
+                <input type="number">
+                <br>
+                <input type="submit" value="매도">
+            </form>
         </div>
         
         <table border=1 id="table_ticker" class="table table-hover text-center">
@@ -69,7 +138,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascripts/trade.js"></script>
 </html>

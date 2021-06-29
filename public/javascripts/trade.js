@@ -1,6 +1,6 @@
 /* ===COIN CHART==================================================================== */
 const chartProperties = {
-    width: 1000,
+    width: 700,
     height: 400,
     timeScale:{
         timeVisible: true,
@@ -172,9 +172,9 @@ function setUpbitData(){
             for(let i = 0; i < tickers.length; i++){
                 if(arr_english_name[i] == "Bitcoin Cash")
                     arr_english_name[i] = "Timocoin"
-
+                console.log('tlqkf',tickers[i]);
                 let rowHtml = `<tr><td id=\"list_${arr_english_name[i]}\">` + arr_english_name[i] + "</td>";
-                rowHtml += "<td rowspan=\"2\">" + comma(tickers[i].trade_price)+"</td>";
+                rowHtml += `<td rowspan=\"2\" id=\"${arr_english_name[i]}\">` + comma(tickers[i].trade_price)+"</td>";
                 rowHtml += "<td rowspan=\"2\">" + comma((tickers[i].signed_change_rate*100).toFixed(2))+"</td>";
                 rowHtml += "<td rowspan=\"2\">" 
                 + comma((tickers[i].acc_trade_price_24h > 1000000 ? ( tickers[i].acc_trade_price_24h / 1000000 ) : tickers[i].acc_trade_price_24h).toFixed(0)) 
@@ -182,6 +182,39 @@ function setUpbitData(){
                 rowHtml += "<tr><td>" + arr_market_name[i] + "</td>";
 
                 $("#table_ticker > tbody:last").append(rowHtml);
+
+                if($(".viewchart").text() == arr_english_name[i]){
+                    if(tickers[i].change == "RISE"){
+                        $(".showcoin").addClass('red');
+                        $(".plu").html('');
+                        $(".plu").html("+");
+                        $(".arrow").html('');
+                        $(".arrow").html(`<i class="fas fa-caret-up"></i>`);
+                    }else if(tickers[i].change == "EVEN"){
+                        $(".showcoin").addClass('black');
+                        $(".plu").html('');
+                        $(".plu").html('');
+                        $(".arrow").html('');
+                        $(".arrow").html(`<i class="fas fa-caret-left"></i>`);
+                    }else{
+                        $(".showcoin").addClass('blue');
+                        $(".plu").html('');
+                        $(".plu").html("-");
+                        $(".arrow").html('');
+                        $(".arrow").html(`<i class="fas fa-caret-down"></i>`);
+                    }
+                    $(".coin_value").html('');
+                    $(".coin_before").html('');
+                    $(".change_price").html('');
+                    $(".coin_value").html(`${tickers[i].trade_price}`);
+                    $(".coin_before").html(`${comma((tickers[i].signed_change_rate*100).toFixed(2))}%`);
+                    $(".change_price").html(`${tickers[i].change_price}`);
+
+                    $('.highprice').html('');
+                    $('.lowprice').html('');
+                    $('.highprice').html(`${tickers[i].high_price}`);
+                    $('.lowprice').html(`${tickers[i].low_price}`);
+                }
             }
         });
     })
@@ -189,7 +222,7 @@ function setUpbitData(){
         console.log("[ ERROR ] UPbit API connect error");
     });
 
-    setTimeout(setUpbitData, 2000);
+    setTimeout(setUpbitData, 1000);
 }
 
 /* ===FUNC CALL===================================================================== */

@@ -60,3 +60,88 @@
   border-radius: 10px 10px;
 }
 
+/* trade */
+.trade_body{
+  background: #eeeeee;
+}
+.red{
+  color : red;
+}
+.blue{
+  color : blue;
+}
+.black{
+  color : black;
+}
+.total_box{
+  margin-top: 10px;
+  border : 2px solid #dcdcdc;
+  padding: 10px;
+  background: #fff;
+  width: 685px;
+}
+.box_one{
+  padding: 10px;
+}
+.viewchart{
+  font-size: 40px;
+  font-weight: 550;
+}
+.showcoin{
+  display: flex;
+  font-size: 30px;
+}
+.priceone{
+  display: flex;
+  justify-content: space-around;
+  font-weight: bolder;
+}
+.krw{
+  font-size: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.before{
+  font-size: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 10px;
+}
+.change_d{
+  font-size: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.box_two{
+  padding: 10px;
+  display: flex;
+  justify-content: left;
+  font-size: 15px;
+  font-weight: 550;
+}
+.first_box{
+  margin-right: 30px;
+}
+#coinmarketcap-widget-marquee{
+  background: #fff;
+}
+.buybox{
+  margin-top: 10px;
+  width: 685px;
+  display: flex;
+  justify-content: space-around;
+}
+#buy{
+  border : 1px solid #dcdc;
+  background: rgb(255, 183, 183);
+  padding: 20px;
+  border-radius: 10px 10px;
+}
+#sell{
+  border : 1px solid #dcdc;
+  background: rgb(127, 219, 255);
+  padding: 20px;
+  border-radius: 10px 10px;
+}

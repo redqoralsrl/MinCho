@@ -1,3 +1,7 @@
 node_modules
+<<<<<<< HEAD
+routes/mysql.js
+=======
 routes/mysql.js
 ./routes/mysql.js
+>>>>>>> 46b8142bb14f7e04d87ac169167a4e85829154ae

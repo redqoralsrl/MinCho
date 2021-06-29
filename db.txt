@@ -3,7 +3,11 @@ create table userdb(
     id varchar(20) not null primary key,
     name varchar(20) not null,
     pw varchar(300) not null,
+<<<<<<< HEAD
     balance bigint(8) unsigned,
+=======
+    balance bigint(8) unsigned
+>>>>>>> 29b728d3b97fa4773c776211fd8314f512de2283
 );
 
 // 지갑 DB

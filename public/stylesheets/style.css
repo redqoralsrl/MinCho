@@ -55,7 +55,7 @@
   padding: 8px 12px;
 }
 .navbar_menu li:hover{
-  background-color: #3ad0fa;
+  background-color: #68deff;
   border-radius: 4px;
 }
 .navbar__toogleBtn{
@@ -198,10 +198,44 @@
   justify-content: space-around;
 }
 #buy{
-  border : 1px solid #dcdc;
+  border : 2px solid #fff;
   background: rgb(255, 183, 183);
   padding: 20px;
   border-radius: 10px 10px;
+  text-align: right;
+  font-weight: bolder;
+}
+#buy h3{
+  text-align: center;
+}
+#leftdiv{
+  text-align: left;
+}
+.centerdiv{
+  text-align: center;
+}
+#per{
+  padding: 4px;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid black;
+  border-radius: 3px 3px;
+  width: 45px;
+  margin-top: 2px;
+}
+#per:hover{
+  background: rgb(255, 183, 183);
+  color: #fff;
+}
+.endbtn{
+  width: 100%;
+  font-weight: bolder;
+  font-size: 15px;
+  border-radius: 5px 5px;
+}
+.endbtn:hover{
+  background: rgb(255, 183, 183);
+  color: #fff;
 }
 #sell{
   border : 1px solid #dcdc;

@@ -4,39 +4,6 @@
     text-decoration: none;
     list-style: none;
   }
-  /* header */
-  .header_area{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid black;
-    background-color: #fff;
-    padding: 10px 0 10px 15px;
-  }
-  .header_area img{
-    height: 40px;
-    align-items: center;
-    /* width: 250px; */
-  }
-  .header_area ul{
-    font-weight: bolder;
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-    align-items: center;
-    list-style: none;
-  }
-  .header_area ul a{
-    text-decoration: none;
-    color: #000;
-  }
-  .header_area ul a:hover{
-    color: #24c0eb;
-  }
-  
-  #chart{
-    margin-left: 10px;
-    margin-top: 10px;
-  }
   
   /* /////// Wallet  ////// */
   

@@ -8,120 +8,124 @@
 
     <body class="trade_body">
         <%- include('title') %>
-        <div class="total_box">
-            <div class="box_one">
-                <p class="viewchart">Bitcoin</p>
-                <div class="showcoin">
-                    <div class="priceone">
-                        <div class="coin_value"></div>
-                        <div class="krw"> KRW</div>
-                    </div>
-                    <div class="before">
-                        <div class="plu"></div>
-                        <div class="coin_before"></div>
-                    </div>
-                    <div class="change_d">
-                        <div class="arrow"></div>
-                        <div class="change_price"></div>
+        <div class="allbox">
+            <div class="total_box">
+                <div class="box_one">
+                    <p class="viewchart">Bitcoin</p>
+                    <div class="showcoin">
+                        <div class="priceone">
+                            <div class="coin_value"></div>
+                            <div class="krw"> KRW</div>
+                        </div>
+                        <div class="before">
+                            <div class="plu"></div>
+                            <div class="coin_before"></div>
+                        </div>
+                        <div class="change_d">
+                            <div class="arrow"></div>
+                            <div class="change_price"></div>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="box_two">
+                    <div class="first_box">
+                        <div>고가</div>
+                        <hr>
+                        <div class="highprice red"></div>
+                    </div>
+                    <div class="second_box">
+                        <div>저가</div>
+                        <hr>
+                        <div class="lowprice blue"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="chart_selector">
+                <select id="chart_en_name_select" name="chart_en_name">
+                    <option value="KRW-BTC">Bitcoin</option>
+                    <option value="KRW-ETH">Ethereum</option>
+                    <option value="KRW-LTC">Litecoin</option>
+                    <option value="KRW-XRP">Ripple</option>
+                    <option value="KRW-DOGE">Dogecoin</option>
+                    <option value="KRW-BCH">Timocoin</option>
+                </select>
+    
+                <select id="chart_time_select" name="chart_time">
+                    <option value="minutes/1">1 minute</option>
+                    <option value="minutes/3">3 minute</option>
+                    <option value="minutes/5">5 minute</option>
+                    <option value="minutes/10">10 minute</option>
+                    <option value="minutes/15">15 minute</option>
+                    <option value="minutes/30">30 minute</option>
+                    <option value="minutes/60">60 minute</option>
+                    <option value="minutes/240">240 minute</option>
+                    <option value="days">1 day</option>
+                    <option value="weeks">1 week</option>
+                    <option value="months">1 month</option>
+                </select>
+    
+                <button id="chart_selector_btn">search</button>
+            </>
+            
+            <div id="chart">
+            </div>
+    
+            <div class="buybox">
+                <form id="buy" action="">
+                    <h3>매수</h3>
+                    <div>
+                        <div>주문가능</div>
+                        <div>
+                            <% if(logined == true){ %>
+                                <% if(data != ""){ %>
+                                    <%= data[0].balance.toLocaleString('ko-KR') %>
+                                <% }else { %>
+                                    0
+                                <% } %>
+                                KRW
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                    <div class="price_order">
+                        <div>주문가격</div>
+                        <div class="coin_value"></div>
+                    </div>
+                    <div>
+                        <div>주문수량</div>
+                        <input type="number"><br>
+                        <input type="button" value="25%">
+                        <input type="button" value="50%">
+                        <input type="button" value="75%">
+                        <input type="button" value="100%">
+                    </div>
+                    <div>수수료 : 0.05%</div>
+                    <br>
+                    <input type="submit" value="매수">
+                </form>
+                <form id="sell" action="">
+                    <h3>매도</h3>
+                    <span>금액</span>
+                    <input type="number">
+                    <br>
+                    <input type="submit" value="매도">
+                </form>
             </div>
             
-            <div class="box_two">
-                <div class="first_box">
-                    <div>고가</div>
-                    <hr>
-                    <div class="highprice red"></div>
-                </div>
-                <div class="second_box">
-                    <div>저가</div>
-                    <hr>
-                    <div class="lowprice blue"></div>
-                </div>
-            </div>
+            <table border=1 id="table_ticker" class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <td>영문명</td>
+                        <td>현재가</td>
+                        <td>전일대비</td>
+                        <td>거래대금</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
-        <div id="chart_selector">
-            <select id="chart_en_name_select" name="chart_en_name">
-                <option value="KRW-BTC">Bitcoin</option>
-                <option value="KRW-ETH">Ethereum</option>
-                <option value="KRW-LTC">Litecoin</option>
-                <option value="KRW-XRP">Ripple</option>
-                <option value="KRW-DOGE">Dogecoin</option>
-                <option value="KRW-BCH">Timocoin</option>
-            </select>
-
-            <select id="chart_time_select" name="chart_time">
-                <option value="minutes/1">1 minute</option>
-                <option value="minutes/3">3 minute</option>
-                <option value="minutes/5">5 minute</option>
-                <option value="minutes/10">10 minute</option>
-                <option value="minutes/15">15 minute</option>
-                <option value="minutes/30">30 minute</option>
-                <option value="minutes/60">60 minute</option>
-                <option value="minutes/240">240 minute</option>
-                <option value="days">1 day</option>
-                <option value="weeks">1 week</option>
-                <option value="months">1 month</option>
-            </select>
-
-            <button id="chart_selector_btn">search</button>
-        </>
-        
-        <div id="chart">
-        </div>
-
-        <div class="buybox">
-            <form id="buy" action="">
-                <h3>매수</h3>
-                <div>
-                    <div>주문가능</div>
-                    <div>
-                        <% if(data != []){ %>
-                            <%= data[0].balance %>
-                        <% }else { %>
-                            0
-                        <% } %>
-                        
-                            KRW
-                    </div>
-                </div>
-                <div class="price_order">
-                    <div>주문가격</div>
-                    <div class="coin_value"></div>
-                </div>
-                <div>
-                    <div>주문수량</div>
-                    <input type="number"><br>
-                    <input type="button" value="25%">
-                    <input type="button" value="50%">
-                    <input type="button" value="75%">
-                    <input type="button" value="100%">
-                </div>
-                <div>수수료 : 0.05%</div>
-                <br>
-                <input type="submit" value="매수">
-            </form>
-            <form id="sell" action="">
-                <h3>매도</h3>
-                <span>금액</span>
-                <input type="number">
-                <br>
-                <input type="submit" value="매도">
-            </form>
-        </div>
-        
-        <table border=1 id="table_ticker" class="table table-hover text-center">
-            <thead>
-                <tr>
-                    <td>영문명</td>
-                    <td>현재가</td>
-                    <td>전일대비</td>
-                    <td>거래대금</td>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
 
         <div 
             id="coinmarketcap-widget-marquee" 

@@ -206,14 +206,14 @@ function setUpbitData(){
                     $(".coin_value").html('');
                     $(".coin_before").html('');
                     $(".change_price").html('');
-                    $(".coin_value").html(`${tickers[i].trade_price}`);
+                    $(".coin_value").html(`${tickers[i].trade_price.toLocaleString('ko-KR')}`);
                     $(".coin_before").html(`${comma((tickers[i].signed_change_rate*100).toFixed(2))}%`);
-                    $(".change_price").html(`${tickers[i].change_price}`);
+                    $(".change_price").html(`${tickers[i].change_price.toLocaleString('ko-KR')}`);
 
                     $('.highprice').html('');
                     $('.lowprice').html('');
-                    $('.highprice').html(`${tickers[i].high_price}`);
-                    $('.lowprice').html(`${tickers[i].low_price}`);
+                    $('.highprice').html(`${tickers[i].high_price.toLocaleString('ko-KR')}`);
+                    $('.lowprice').html(`${tickers[i].low_price.toLocaleString('ko-KR')}`);
                 }
             }
         });

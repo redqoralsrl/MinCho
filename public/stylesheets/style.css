@@ -49,6 +49,7 @@
 #chart{
   margin-left: 10px;
   margin-top: 10px;
+  width: 700px;
 }
 .mySlides {
   display:none;
@@ -61,6 +62,10 @@
 }
 
 /* trade */
+.allbox{
+  margin: 0 auto;
+  width: 700px;
+}
 .trade_body{
   background: #eeeeee;
 }

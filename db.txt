@@ -14,7 +14,6 @@ create table wallet(
     name varchar(20) not null,
     amount_money bigint(8) unsigned,  
     withdraw_deposit varchar(4) not null,
-    balance bigint(8) unsigned default 0,
     date timestamp not null DEFAULT current_timestamp
 );
 amount_money : 금액

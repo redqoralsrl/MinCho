@@ -17,7 +17,14 @@ router.get('/', function(req, res, next) {
             title : ejs.render('title'),
         });
     })
-    
+});
+
+router.post('/buy', function(req,res,next){
+
+});
+
+router.post('/sell', function(req, res, next){
+
 });
 
 module.exports = router;

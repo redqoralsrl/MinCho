@@ -8,7 +8,7 @@ function upbitWebSocket(name) {
     let ws = new WebSocket("wss://api.upbit.com/websocket/v1");
 
     ws.on("open", () => {
-        console.log("upbit websocket 연결");
+        console.log("upbit websocket 연결", name); // 잘 들어감
         const str = `[{"ticket":"find"},{"type":"ticker","codes":["${name}"]}]`;
         ws.send(str);
     });
@@ -32,10 +32,11 @@ function upbitWebSocket(name) {
 }
 
 router.post('/', function(req, res) {
-    console.log("자바스크립트에서 ajax 요청받음 ====>", req.body.selectName);
+    console.log("자바스크립트에서 ajax 요청받음 ====>", req.body.selectName); // 잘 들어감
    
-    upbitWebSocket(req.body.selectName);
+    upbitWebSocket(req.body.selectName); // 잘 들어감
     res.send(recvData);
+    console.log(recvData);
 });
 
 module.exports = router;

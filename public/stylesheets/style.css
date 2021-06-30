@@ -4,6 +4,9 @@
   text-decoration: none;
   list-style: none;
 }
+table, td, th{
+  border-collapse: collapse;
+}
 /* header */
 /* .header_area{
   display: flex;
@@ -197,7 +200,7 @@
   display: flex;
   justify-content: space-around;
 }
-#buy{
+#buy, #sell{
   border : 2px solid #fff;
   background: rgb(255, 183, 183);
   padding: 20px;
@@ -205,7 +208,7 @@
   text-align: right;
   font-weight: bolder;
 }
-#buy h3{
+#buy h3, #sell h3{
   text-align: center;
 }
 #leftdiv{

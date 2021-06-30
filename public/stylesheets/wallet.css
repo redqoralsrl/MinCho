@@ -7,38 +7,78 @@
   
   /* /////// Wallet  ////// */
   
-  a, abbr, acronym, body, caption, cite, code, dd, del, dfn, div, dl, dt, em, embed, fieldset, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, label, legend, li, object, ol, p, pre, q, s, samp, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, u, ul {
+  /* a, abbr, acronym, body, caption, cite, code, dd, del, dfn, div, dl, dt, em, embed, fieldset, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, label, legend, li, object, ol, p, pre, q, s, samp, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, u, ul {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
-  }
+  } */
+/* toggle */
+.answer {
+  display: none;
+  padding-bottom: 30px;
+}
+#faq-title {
+  font-size: 25px;
+}
+.faq-content {
+  border-bottom: 1px solid #e0e0e0;
+}
+.question {
+  font-size: 19px;
+  padding: 30px 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.question:hover {
+  color: #2962ff;
+}
+[id$="-toggle"] {
+  margin-right: 15px;
+}
+/*  */
+.bgWhite {
+  background-color: #e9ecf1;
+}
+
+
   .mainB{
-    display: grid;
+    position: relative;
     width: 1400px;
     margin: 0 auto;
     padding-top: 72px;
     transition: all .4s ease-out;
-    grid-template-columns :1fr 2fr 1fr;
-    grid-template-rows : 1fr;
+   
   }
+<<<<<<< HEAD
   .mainB section.left{
+=======
+  .mainB section.ty01{
+>>>>>>> jj
     float: left;
     width: 990px;
   }
-  section{
-    display: block;
-  }
-  .mainB section .half_left{
+  .mainB section.harfB{
     float: left;
     width: 100%;
+    background-color: #e9ecf1;
   }
-  .mainB section .half_left .left_chart{
+  .mainB section .halfB .leftB.sizeUp{
+    width: 565px;
+  }
+  
+  .mainB section .halfB .leftB{
+    float: left;
+    width: 50%;
     padding-right: 5px;
     box-sizing: border-box;
   }
-  
+
   .mainB section article{
     float: left;
     width: 100%;
@@ -46,53 +86,185 @@
     background-color: #fff;
     box-shadow: 2px 2px 4px #dee1e7;
   }
-  .mainB section .halfB .leftB .scrollB{
-    overflow: hidden;
-  }
-  .mainB section article .totalB{
-    padding: 0 15px;
-  }
-  .mainB section article .totalB{
-    display: block;
-    height: 70px;
-    padding: 0 20px;
-    border-bottom: 1px solid #d4d6dc;
-  }
-  .mainB section article .totalB strong{
-    float: left;
-    margin-top: 22px;
-    color: #2b2b2b;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: Noto Sans KR,sans-serif;
-  }
-  .mainB section article .totalB p {
-    float: right;
-    margin-top: 22px;
-    color: #d60000;
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .middle{
+  .mainB section .halfB .rightB.sizeUp{
     width: 425px;
   }
-  .mainB section.left .half_left .rightB article:only-child {
+  .mainB section .halfB .rightB{
+    float: left;
+    padding-left:5px;
+    box-sizing: border-box;
+  }
+  .mainB section.ty01 .halfB .rightB article:only-child {
     height: 870px;
     overflow: hidden;
+  }
+article{
+  display: block;
 }
-.mainB section article {
-    width: 100%;
-    margin-bottom: 10px;
-    background-color: #fff;
-    box-shadow: 2px 2px 4px #dee1e7;
-}
-.mainB section .half_left .rightB {
+  .mainB section article {
+      width: 100%;
+      margin-bottom: 10px;
+      background-color: #fff;
+      box-shadow: 2px 2px 4px #dee1e7;
+  }
+  .mainB section article .titB a.refresh {
     float: right;
-    width: 50%;
-    padding-left: 5px;
-    box-sizing: border-box;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin-top: 13px;
+    background: url(https://cdn.upbit.com/images/bg.e801517.png) -450px -30px no-repeat;
+    overflow: hidden;
+    text-indent: -999em;
+
+  }
+  a, a:active, a:visited {
+    text-decoration: none;
 }
+a {
+  color:#2b2b2b;
+}
+.mainB section article .dlB {
+  display: block;
+  width: 100%;
+}
+<<<<<<< HEAD
 .mainB section .halfB .rightB.sizeUp {
     width: 425px;
+=======
+.mainB section article .dlB dl.bg {
+  background-color: #fbfbfc;
+  border-bottom: 1px solid #d5d6dc;
+  height: auto;
+}
+.mainB section article .dlB dl {
+  height: 52px;
+  padding: 14px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d6dc;
+}
+.mainB section article .dlB dl dt.first {
+  width: 40%;
+  color: #2b2b2b;
+  font-size: 14px;
+  font-weight: 700;
+}
+.mainB section article .dlB dl dt {
+  float: left;
+  width: 30%;
+  height: 26px;
+  line-height: 26px;
+  color: #666;
+  font-size: 13px;
+  font-family: Noto Sans KR,sans-serif;
+}
+.mainB section article .dlB dl dd {
+  word-break: break-all;
+}
+.mainB section article .tabB {
+  display: block;
+  width: 100%;
+}
+.mainB section article .tabB ul {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.mainB section article .tabB ul {
+  overflow: hidden;
+}
+li, ol, ul {
+  list-style: none;
+}
+.mainB section article .tabB ul li:first-child {
+  width: auto;
+}
+/* // */
+.mainB section article .tabB ul li {
+  display: table-cell;
+  width: auto;
+  float: none;
+}
+.mainB section article .tabB ul li a.on {
+  height: 40px;
+  border-bottom: 3px solid #115dcb;
+  color: #115dcb;
+  font-weight: 700;
+  
+}
+.mainB section article .tabB ul li a {
+  display: block;
+  width: 100%;
+  height: 42px;
+  border-bottom: 1px solid #d4d6dc;
+  line-height: 42px;
+  color: #2b2b2b;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Noto Sans KR,sans-serif;
+  text-align: center;
+}
+.mainB section article .tabB ul li a.on {
+  height: 40px;
+  border-bottom: 3px solid #115dcb;
+  color: #115dcb;
+  font-weight: 700;
+}
+a:hover {
+  text-decoration: underline;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.f_clear:after {
+  content: ".";
+  height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.f_clear {
+  display: block;
+  min-height: 1px;
+}
+.mainB section article .statementB {
+  display: block;
+}
+.mainB section article .selectB {
+  position: relative;
+  float: left;
+  margin: 7px 0 0 14px;
+}
+.mainB section article .selectB a.select {
+  display: block;
+  width: 88px;
+  height: 26px;
+  padding-left: 8px;
+  background: #fff url(https://cdn.upbit.com/images/ico_select.3a08a06.png) 100% no-repeat;
+  border: 1px solid #dfe0e5;
+  border-radius: .1em;
+  line-height: 26px;
+  color: #2b2b2b;
+  font-family: Dotum,Noto Sans KR,sans-serif;
+}
+.mainB section article .titB {
+  display: block;
+  height: 42px;
+  padding: 0 14px;
+  border-bottom: 1px solid #d4d6dc;
+}
+.mainB section article .dlB dl dd.first {
+  width: 80%;
+  color: #666;
+}
+.mainB section article .titB strong {
+  float: left;
+  margin-top: 8px;
+  color: #2b2b2b;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Noto Sans KR,sans-serif;
+>>>>>>> jj
 }

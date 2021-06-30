@@ -3,7 +3,7 @@ const ejs = require("ejs");
 const router = express.Router();
 const client = require("./mysql");
 const session = require("express-session");
-
+const moment = require('moment');
 router.use(
   session({
     secret: "blackzat", // 데이터를 암호화 하기 위한 필요한 옵션
@@ -22,7 +22,7 @@ router.use(
 //     res.render("wallet", {
 //       logined: false,
 //       title: ejs.render("title"),
-//     });
+//     });  
 //   }
 // });
 
@@ -42,6 +42,7 @@ router.get("/", (req, res) => {
           name: req.session.name,
           balance: req.session.balance,
           wallet : data,
+          moment: moment,
           // withdraw_deposit: req.session.withdraw_deposit,
           // date : req.session.date,
           // amount_money:req.session.amount_money,
@@ -60,18 +61,20 @@ router.post("/deposit", function (req, res, next) {
   var name = req.session.name;
   var withdraw_deposit = "입금";
   var amount = req.body.amount_money;
+  
   client.query("select * from userdb where id=?", [id], (err, data) => {
-    const user_balance = data[0].balance;
+    let user_balance = data[0].balance;
     // console.log('user돈',user_balance);
-    const result_balance = parseInt(user_balance) + parseInt(amount);
-    var datas = [id, name, amount, result_balance, withdraw_deposit];
+    let result_balance = parseInt(user_balance) + parseInt(amount);
+    var datas = [id, name, amount, withdraw_deposit];
     var sql =
-      "insert into wallet (id,name,amount_money,balance,withdraw_deposit,date) values(?,?,?,?,?,now())";
+      "insert into wallet (id,name,amount_money,withdraw_deposit,date) values(?,?,?,?,now())";
     client.query(sql, datas, function (err, row) {
+
       client.query(
         "update userdb set balance=? where id=?",
         [result_balance, id],
-        (err, data) => {
+        (err, row) => {
           req.session.balance = result_balance;
           req.session.save();
           if (err) console.error("err: " + err);
@@ -89,23 +92,32 @@ router.post("/withdraw", function (req, res, next) {
   var name = req.session.name;
   var withdraw_deposit = "출금";
   var amount = req.body.amount_money;
+  
   client.query("select * from userdb where id=?", [id], (err, data) => {
     const user_balance = data[0].balance;
+
     // console.log('user돈',user_balance);
     const result_balance = parseInt(user_balance) - parseInt(amount);
-    var datas = [id, name, amount, result_balance, withdraw_deposit];
-    var sql =
-      "insert into wallet (id,name,amount_money,balance,withdraw_deposit,date) values(?,?,?,?,?,now())";
-    client.query(sql, datas, function (err, row) {
-      client.query(
-        "update userdb set balance=? where id=?",
-        [result_balance, id],
-        (err, data) => {
-          if (err) console.error("err: " + err);
-          res.redirect("/wallet");
-        }
-      );
-    });
+    if(result_balance < 0){
+      res.send('<script>alert("잔액이 부족합니다");history.back();</script>');
+  }
+    else{
+      var datas = [id, name, amount, withdraw_deposit];
+      var sql =
+      "insert into wallet (id,name,amount_money,withdraw_deposit,date) values(?,?,?,?,now())";
+      client.query(sql, datas, function (err, row) {
+        client.query(
+          "update userdb set balance=? where id=?",
+          [result_balance, id],
+          (err, row) => {
+            req.session.balance = result_balance;
+            req.session.save();
+            if (err) console.error("err: " + err);
+            res.redirect("/wallet");
+          }
+          );
+        });
+      };
   });
 });
 

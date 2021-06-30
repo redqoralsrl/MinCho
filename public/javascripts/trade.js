@@ -16,12 +16,8 @@ function chartSelector() {
     $('#chart_selector_btn').on("click", () => {
         paramTime = document.getElementById("chart_time_select").value;
         paramName = document.getElementById("chart_en_name_select").value;
-<<<<<<< HEAD
-        
-=======
 
         // timeToSec(paramTime);
->>>>>>> origin/homeYU
         staticChart(paramTime, paramName);
         // upbitWebSocket(paramName);
     });
@@ -86,12 +82,8 @@ function staticChart(selectTime, selectName) {
 }
 
 /* ===WebSocket===================================================================== */
-<<<<<<< HEAD
-function upbitWebSocket(selectName, dynamicTime) {
-=======
 // function upbitWebSocket(selectName, dynamicTime) {
 function upbitWebSocket(selectName) {
->>>>>>> origin/homeYU
     
     $.ajax({
         url: "/upbitWS",
@@ -102,20 +94,6 @@ function upbitWebSocket(selectName) {
         // cache: false,
     })
     .done(function(result) {
-<<<<<<< HEAD
-        // console.log("뿌엥", result);
-
-        // tradeprice = result.trade_price; // 아래처럼 수정
-        // tradetime = result.timestamp/1000; // 아래처럼 수정
-            const tradeprice = result.trade_price;
-            const tradetime = result.timestamp/1000;
-            console.log("클릭할 때 잘 바뀌니? ", result.code, tradeprice, tradetime);
-
-        if(selectName == result.code){
-
-            mergeTickToBar(tradeprice, tradetime);
-            if(++ticksInCurrentBar === dynamicTime) {
-=======
         // const tradeprice = result.trade_price;
         // const tradetime = result.timestamp/1000;
 
@@ -130,7 +108,6 @@ function upbitWebSocket(selectName) {
             mergeTickToBar(result.trade_price, result.timestamp);
             // if(++ticksInCurrentBar === dynamicTime) {
             if(++ticksInCurrentBar === 5) {
->>>>>>> origin/homeYU
                 currentIndex++;
     
                 currentBar = {
@@ -138,21 +115,13 @@ function upbitWebSocket(selectName) {
                     high: null,
                     low: null,
                     close: null,
-<<<<<<< HEAD
-                    time: tradetime,
-=======
                     // time: result.timestamp/1000,
                     time: result.timestamp,
->>>>>>> origin/homeYU
                 };
                 ticksInCurrentBar = 0;
             }
         }
-<<<<<<< HEAD
-        
-=======
         else console.log("둘 다 아니면 무 ㅓㄴ데");
->>>>>>> origin/homeYU
     })
     .fail(function(){
         console.log("업비트 웹소켓 에러");

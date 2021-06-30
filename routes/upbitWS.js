@@ -16,17 +16,10 @@ function upbitWebSocket(name) {
 
     ws.on("close", () => {
         console.log("upbit websocket 연결끊김");
-<<<<<<< HEAD
-        setTimeout(function() {
-            console.log("upbit websocket 재접속");
-            upbitWebSocket(name);
-        }, 2000);
-=======
         // setTimeout(function() {
         //     console.log("upbit websocket 재접속");
         //     upbitWebSocket(name);
         // }, 2000);
->>>>>>> origin/homeYU
     });
 
     ws.on('message', (data) => {
@@ -44,11 +37,7 @@ router.post('/', function(req, res) {
    
     upbitWebSocket(req.body.selectName); // 잘 들어감
     res.send(recvData);
-<<<<<<< HEAD
-    console.log("실시간 api 결과값 ==>", recvData.code);
-=======
     console.log("실시간 api 결과값 ========>", recvData.code);
->>>>>>> origin/homeYU
 });
 
 module.exports = router;

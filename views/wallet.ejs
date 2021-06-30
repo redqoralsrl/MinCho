@@ -1,4 +1,5 @@
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,155 +9,235 @@
     <!-- 파비콘 -->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/javascripts/wallet.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#deposit').on('click',()=>{
+        $(document).ready(function () {
+            $('#deposit').on('click', () => {
                 console.log('입금처리');
                 $.ajax({
                     url: '/wallet/deposit',
                     dataType: 'json',
                     type: 'POST',
-                    data: {'data': $('#num').val()},
-                    success: (result)=>{
-                        if(result['result'] == true){
+                    data: { 'data': $('#num').val() },
+                    success: (result_balance) => {
+                        if (result_balance['result_balance'] == true) {
                             alert('입금완료!');
                         }
                         location.reload('/wallet');
                     }
                 });
             });
-            $('#withdraw').on('click',()=>{
+            $('#withdraw').on('click', () => {
                 console.log('출금처리');
                 $.ajax({
                     url: '/wallet/withdraw',
                     dataType: 'json',
                     type: 'POST',
-                    data: {'data': $('#num1').val()},
-                    success: (result)=>{
-                        if(result['result'] == true){
+                    data: { 'data': $('#num1').val() },
+                    success: (result_balance) => {
+                        if (result_balance['result_balance'] == true) {
                             alert('출금완료!');
-                        }else{
+                        } else {
                             alert('출금실패');
+                            
                         }
                         location.reload('/wallet');
                     }
                 });
             });
-            
 
         });
     </script>
+    <script>
+        function refresh() {
+            location.reload();
+        }
+
+    </script>
+
+
 </head>
 
-<body>
+<body class="bgWhite">
     <%- include('title') %>
-    
-    <div>
-        <div class="mainB">
-            <section class="left">
-                <div class="half_left">
-                    <div class="left_chart">
-                        <article>
-                            <div class="scrollB">
-                                <div style="position: relative; overflow: hidden; width: 100%; height: 870px;">
-                                    <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
-                                        <span class="totalB">
-                                            <strong>총 보유 자산</strong>
-                                            <p>
+
+        <div>
+            <div class="mainB">
+                <section class="ty01">
+                    <div class="halfB">
+                        <div class="leftB sizeUp sgdB">
+                            <article>
+                                <div class="scrollB">
+                                    <div style="position: relative; overflow: hidden; width: 90%; height: 870px;">
+                                        <div
+                                            style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
+                                            <span class="totalB">
+                                                <strong>총 보유 자산</strong>
                                                 
-                                                <i>KRW</i>
-                                            </p>
-                                        </span>
-                                        <span>
-                                            매수매도 공간
-                                        </span>
-                                        
+
+                                                <p>
+                                                    <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                                                    KRW
+                                                </p>
+                                            </span>
+                                            <span>
+                                                매수매도 공간
+                                             
+                                            </span>
+                                           
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="rightB sizup sgdB">
-                        <article>
-                            <span class="withdraw_deposit">
-                                <strong>
-                                    "KRW"
-                                    "입출금"
-                                </strong>
-                                <a href="#" class="refresh" title="새로고침">새로고침</a>
-                            </span>
-                            <span class="balance"> 
-                                <dl class="bg">
-                                    <dt class="first">
-                                        보유금액
-                                    </dt>
-                                    <dd class="first">
-                                        <strong>
-                                            <%=balance%>
-                                            <i>KRW</i><br>
+                            </article>
+                        </div>
+
+                        <div class="rightB sizeUp sgdB">
+                            <article>
+                                <span class="titB">
+                                    <strong>
+                                        KRW
+                                        입출금
+                                    </strong>
+                                    <a href="#" class="refresh" title="새로고침" onClick="window.location.reload()">새로고침</a>
+                                </span>
+                                <span class="dlB">
+                                    <dl class="bg">
+                                        <dt class="first">
+                                            보유금액
+                                        </dt>
+                                        <dd class="first">
                                             <strong>
-                                              
+                                                <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                                                    KRW<br>
                                             </strong>
-                                        </strong>
-                                    </dd>
-                                </dl>
-                            </span>
-                            <span class="tabB">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="on" title="KRW충전">KRW 충전</a>
+                                        </dd>
+                                    </dl>
+                                </span>
+                                <span class="tabB">
+
+                               
+                                <div class="faq-content">
+                                    <button class="question" id="que-1">
+                                        <span id="que-1-toggle"></span>
+                                        <span>KRW 충전</span>
+                                    </button>
+                                    
+                                    <div class="answer" id="ans-1">
                                         <div class="TabArea">
                                             <form action="/wallet/deposit" method="POST">
-                                                <input  id="num" placeholder="0"name="amount_money">
-                                                <input type="submit" value="입금" id="deposit" >
+                                                <input type="number" id="num" placeholder="0" name="amount_money" style="height: 25px; border-radius: 10px;">
+                                                <input type="submit" value="입금" id="deposit" style=" height: 25px; width: 35px; border-radius: 10px;">
                                             </form>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <a href="#" class title="출금신청">출금신청</a>
+                                    </div>
+                                </div>
+
+                                <div class="faq-content">
+                                    <button class="question" id="que-2">
+                                        <span id="que-2-toggle"></span>
+                                        <span>출금신청</span>
+                                    </button>
+
+                                    <div class="answer" id="ans-2">
                                         <div class="TabArea">
                                             <form action="/wallet/withdraw" method="POST">
-                                                <input  id="num1" placeholder="0" name="amount_money">
-                                                <input type="submit" value="출금" id="withdraw" >
+                                                <input type="number" id="num1" placeholder="0" name="amount_money"  style="height: 25px; border-radius: 10px;">
+                                                <input type="submit" value="출금" id="withdraw" style=" height: 25px; width: 35px; border-radius: 10px;">
                                             </form>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <a href="#" class title="입출금내역">입출금내역</a>
+                                    </div>
+                                </div>
 
-                                        <%wallet.forEach((item,index)=>{%>
-                                            <div><%=item.amount_money%></div>
-                                            <div><%=item.date%></div>
-                                            <div><%=item.withdraw_deposit%></div>
-                                        <%})%>
+                                <div class="faq-content">
+                                    <button class="question" id="que-3"><span
+                                            id="que-3-toggle"></span><span>입출금내역</span></button>
+                                    <div class="answer" id="ans-3" style="overflow:scroll; width:500px; height:680px;">
+
                                        
-                              
-                                            
+                                        <div>
+                                            <%wallet.forEach((item,index)=>{%>
+                                                <div>
+                                                    [<%=item.withdraw_deposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>]
 
+                                                    <%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%>
 
-                                    </li>
-                                </ul>
-                            </span>  
+                                                    <%=item.amount_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>원 
+                                               
+                                                
+                                                </div>
+                                                <%})%>
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    const items = document.querySelectorAll('.question');
+
+                                    function openCloseAnswer() {
+                                        const answerId = this.id.replace('que', 'ans');
+
+                                        if (document.getElementById(answerId).style.display === 'block') {
+                                            document.getElementById(answerId).style.display = 'none';
+                                            document.getElementById(this.id + '-toggle').textContent = '+';
+                                        } else {
+                                            document.getElementById(answerId).style.display = 'block';
+                                            document.getElementById(this.id + '-toggle').textContent = '-';
+                                        }
+                                    }
+
+                                    items.forEach(item => item.addEventListener('click', openCloseAnswer));
+                                </script>
+
+                               
+                            
+                            </span>
+                            <span class="statementB">
+                                <div class="f_clear">
+                                    <div class="selectB">
+                                        <a href="#" class="select">전체</a> 
+                                        <form action="/wallet/">
+                                            <select name="withdarw" id="with_depo" class="select"onchange="handleOnChange(this)" >
+                                                <option value="all">전체</option>
+                                                <option value="deposit">입금</option>
+                                                <option value="withdraw">출금</option>
+                                            </select>
+                                            <div id='result'></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="scrollB" style="height:607px">
+                                    <div style="position: relative; overflow: hidden; width: 100%; height: 607px;">
+                                        <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </span>
                         </div>
                         </article>
 
                     </div>
 
-                </div>
-              
-              
+            </div>
 
-           
 
-        
+
+
+
+
             </section>
 
-     
-        </div>
-    </div>
-    <footer>
 
-    </footer>
+        </div>
+        </div>
+        <footer>
+
+        </footer>
 
 </body>
+
 </html>

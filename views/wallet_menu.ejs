@@ -1,0 +1,70 @@
+<!-- <span class="tabB">
+    <div>
+    <ul>
+        <li>
+            <a href="#" class="on" title="KRW충전">KRW 충전</a>
+            <div class="TabArea"  style="display: none;">
+                <form action="/wallet/deposit" method="POST">
+                    <input  id="num" placeholder="0"name="amount_money">
+                    <input type="submit" value="입금" id="deposit" >
+                </form>
+            </div>
+        </li>
+        <li>
+            <a href="#" class title="출금신청">출금신청</a>
+            <div class="TabArea">
+                <form action="/wallet/withdraw" method="POST">
+                    <input type="number" id="num1" placeholder="0" name="amount_money">
+                    <input type="submit" value="출금" id="withdraw" >
+                </form>
+            </div>
+        </li>
+        <li>
+            <a href="#" class title="입출금내역">입출금내역</a>
+
+
+        </li>
+    </ul>
+</div>
+</span>   -->
+<span class="tabB">
+    <div>
+        <ul>
+            <li>
+                <a href="#" class="on" title="KRW충전">KRW 충전</a>
+
+            </li>
+            <li>
+                <a href="#" class title="출금신청">출금신청</a>
+
+            </li>
+            <li>
+                <a href="#" class title="입출금내역">입출금내역</a>
+            </li>
+
+        </ul>
+        <div style="display: block;" >
+            <div class="TabArea" >
+                <form action="/wallet/deposit" method="POST">
+                    <input id="num" placeholder="0" name="amount_money">
+                    <input type="submit" value="입금" id="deposit">
+                </form>
+            </div>
+            <div class="TabArea">
+                <form action="/wallet/withdraw" method="POST">
+                    <input type="number" id="num1" placeholder="0" name="amount_money">
+                    <input type="submit" value="출금" id="withdraw">
+                </form>
+            </div>
+            <%wallet.forEach((item,index)=>{%>
+                <div>
+                    <%=item.amount_money%>원   | 
+                
+                    <%=moment(item.date).format('YYYY.MM.DD / HH:mm:ss')%>
+                
+                [<%=item.withdraw_deposit%>]</div>
+                <%})%>
+        </div>
+    </div>
+</span>
+

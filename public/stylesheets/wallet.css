@@ -55,11 +55,7 @@
     transition: all .4s ease-out;
    
   }
-<<<<<<< HEAD
-  .mainB section.left{
-=======
   .mainB section.ty01{
->>>>>>> jj
     float: left;
     width: 990px;
   }
@@ -128,10 +124,6 @@ a {
   display: block;
   width: 100%;
 }
-<<<<<<< HEAD
-.mainB section .halfB .rightB.sizeUp {
-    width: 425px;
-=======
 .mainB section article .dlB dl.bg {
   background-color: #fbfbfc;
   border-bottom: 1px solid #d5d6dc;
@@ -266,5 +258,4 @@ input::-webkit-inner-spin-button {
   font-size: 16px;
   font-weight: 700;
   font-family: Noto Sans KR,sans-serif;
->>>>>>> jj
 }

@@ -18,7 +18,7 @@ function upbitWebSocket(name) {
         setTimeout(function() {
             console.log("upbit websocket 재접속");
             upbitWebSocket(name);
-        }, 1000);
+        }, 2000);
     });
 
     ws.on('message', (data) => {
@@ -32,11 +32,11 @@ function upbitWebSocket(name) {
 }
 
 router.post('/', function(req, res) {
-    console.log("자바스크립트에서 ajax 요청받음 ====>", req.body.selectName); // 잘 들어감
+    console.log("자바에서 ajax 요청받음 ====>", req.body.selectName); // 잘 들어감
    
     upbitWebSocket(req.body.selectName); // 잘 들어감
     res.send(recvData);
-    console.log(recvData);
+    console.log("실시간 api 결과값 ==>", recvData.code);
 });
 
 module.exports = router;

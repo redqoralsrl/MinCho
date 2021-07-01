@@ -113,7 +113,7 @@
                     </div>
                     <div class="price_order">
                         <div id="leftdiv">주문가격</div>
-                        <input class="coin_value" name="coin_value" readonly></input>
+                        <input class="coin_value" name="coin_value"></input>
                     </div>
                     <div>
                         <div id="leftdiv">주문금액</div>
@@ -131,6 +131,7 @@
                         
                     </div>
                     <div>수수료 : 0.05%</div>
+                    <div>최소주문금액 : 1000KRW</div>
                     <input type="hidden" name="coin_name" id="coin_name">
                     <br>
                     <% if(logined == false){ %>
@@ -142,7 +143,7 @@
                 <form id="sell" action="">
                     <h3>매도</h3>
                     <div>
-                        <div id="leftdiv">주문가능</div>
+                        <div id="leftdiv">보유 코인</div>
                         <div>
                             <% if(logined == true){ %>
                                 <% if(data != ""){ %>
@@ -160,7 +161,7 @@
                         <input class="coin_value" name="coin_value"></input>
                     </div>
                     <div>
-                        <div id="leftdiv">주문금액</div>
+                        <div id="leftdiv">매도할 코인</div>
                         <input type="number" style="width: 80%;"> KRW<br>
                         <% if(logined == false){ %>
                             <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
@@ -174,7 +175,6 @@
                         <% } %> 
                     </div>
                     <div>수수료 : 0.05%</div>
-                    <div>최소주문금액 : 1000KRW</div>
                     <br>
                     <% if(logined == false){ %>
                         <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">

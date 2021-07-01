@@ -31,9 +31,11 @@ router.post('/number', function(req,res,next){
 router.post('/buy', function(req,res,next){
     console.log(req.body);
     const coin_name = req.body.coin_name;
-    const coin_price = req.body.coin_value;
-    const user_money = req.body.number;
+    const coin_price = Number(req.body.coin_value.replace(/,/g,""));
+    const user_money = Number(req.body.number);
     const user_id = req.session.userId;
+    const trd_coin_cnt = user_money/coin_price;
+    console.log('trd_coin' , user_money, coin_price, trd_coin_cnt);
     // 최소 주문 금액 설정
     if(user_money < 1000) res.send("<script>alert('최소 주문금액 맞춰주세요!');history.back();</script>")
     client.query('select * from userdb where id=?',[user_id],(err,data)=>{
@@ -46,7 +48,7 @@ router.post('/buy', function(req,res,next){
             req.session.save();
         })
     })
-    client.query('insert into trade (id, money, coin_name, trade_coin_count, action) values(?,?,?,?,"매수")',[user_id, user_money, coin_name, user_money/coin_price],(err)=>{
+    client.query('insert into trade (id, money, coin_name, trade_coin_count, action) values(?,?,?,?,"매수")',[user_id, user_money, coin_name, trd_coin_cnt],(err)=>{
         if(err) console.log(err);
         //wallet db에 로그인한 사람이 그 코인 산 기록 있는지 확인
         client.query('select * from wallet where id=? and coin_name=?',[user_id, coin_name], (err, result) => {
@@ -54,7 +56,8 @@ router.post('/buy', function(req,res,next){
             console.log("wallet에 그 코인 산 행 있냐", result[0]);
             //처음 사요
             if(result[0] == undefined){
-                client.query('insert into wallet (id, coin_name, wallet_coin_count, avg_buy_price) values(?,?,?,?)', [user_id, coin_name, user_money/coin_price, coin_price], (err) => {
+                console.log('wallet trd', trd_coin_cnt);
+                client.query('insert into wallet (id, coin_name, wallet_coin_count, avg_buy_price) values(?,?,?,?)', [user_id, coin_name, trd_coin_cnt, coin_price], (err) => {
                     if(err) console.log(err);
                 })
             } else { //산 적 있어요

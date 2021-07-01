@@ -11,6 +11,11 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/javascripts/wallet.js"></script>
     <script>
@@ -71,21 +76,17 @@
                         <div class="leftB sizeUp sgdB">
                             <article>
                                 <div class="scrollB">
-                                    <div style="position: relative; overflow: hidden; width: 90%; height: 870px;">
-                                        <div
-                                            style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
+                                    <div style="position: relative; overflow: hidden; width: 100%; height: 870px;">
+                                        <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
                                             <span class="totalB">
                                                 <strong>총 보유 자산</strong>
-                                                
-
                                                 <p>
-                                                    <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                                                    <%=balance%>
                                                     KRW
                                                 </p>
                                             </span>
                                             <span>
-                                                매수매도 공간
-                                             
+                                                보유 코인 현황 공간
                                             </span>
                                            
                                         </div>
@@ -110,7 +111,7 @@
                                         </dt>
                                         <dd class="first">
                                             <strong>
-                                                <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                                                <%=balance%>
                                                     KRW<br>
                                             </strong>
                                         </dd>
@@ -118,7 +119,6 @@
                                 </span>
                                 <span class="tabB">
 
-                               
                                 <div class="faq-content">
                                     <button class="question" id="que-1">
                                         <span id="que-1-toggle"></span>
@@ -128,8 +128,8 @@
                                     <div class="answer" id="ans-1">
                                         <div class="TabArea">
                                             <form action="/wallet/deposit" method="POST">
-                                                <input type="number" id="num" placeholder="0" name="amount_money" style="height: 25px; border-radius: 10px;">
-                                                <input type="submit" value="입금" id="deposit" style=" height: 25px; width: 35px; border-radius: 10px;">
+                                                <input type="number" id="num" placeholder="0" name="money" style="height: 25px; border-radius: 10px;">
+                                                <input type="submit" value="입금" id="deposit" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
                                             </form>
                                         </div>
                                     </div>
@@ -144,8 +144,8 @@
                                     <div class="answer" id="ans-2">
                                         <div class="TabArea">
                                             <form action="/wallet/withdraw" method="POST">
-                                                <input type="number" id="num1" placeholder="0" name="amount_money"  style="height: 25px; border-radius: 10px;">
-                                                <input type="submit" value="출금" id="withdraw" style=" height: 25px; width: 35px; border-radius: 10px;">
+                                                <input type="number" id="num1" placeholder="0" name="money"  style="height: 25px; border-radius: 10px;">
+                                                <input type="submit" value="출금" id="withdraw" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
                                             </form>
                                         </div>
                                     </div>
@@ -154,22 +154,19 @@
                                 <div class="faq-content">
                                     <button class="question" id="que-3"><span
                                             id="que-3-toggle"></span><span>입출금내역</span></button>
-                                    <div class="answer" id="ans-3" style="overflow:scroll; width:500px; height:680px;">
+                                    <div class="answer" id="ans-3" style="overflow:scroll; width:500px; height:600px;">
 
                                        
-                                        <div>
-                                            <%wallet.forEach((item,index)=>{%>
-                                                <div>
-                                                    [<%=item.withdraw_deposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>]
-
-                                                    <%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%>
-
-                                                    <%=item.amount_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>원 
-                                               
-                                                
-                                                </div>
+                                        <div style="overflow-x:hidden; width:500px; height:900px;">
+                                            <%trade.forEach((item,index)=>{%>
+                                                <table>
+                                                    <tr>
+                                                        <th width="80">[<%=item.action%>]</th>
+                                                        <th width="200"><%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%> </th>
+                                                        <th width="100"><%=item.money%>원</th>
+                                                    </tr>
                                                 <%})%>
-                                                
+                                                </table>
                                         </div>
                                     </div>
                                 </div>
@@ -191,48 +188,32 @@
 
                                     items.forEach(item => item.addEventListener('click', openCloseAnswer));
                                 </script>
-
-                               
-                            
-                            </span>
-                            <span class="statementB">
-                                <div class="f_clear">
-                                    <div class="selectB">
-                                        <a href="#" class="select">전체</a> 
-                                        <form action="/wallet/">
-                                            <select name="withdarw" id="with_depo" class="select"onchange="handleOnChange(this)" >
-                                                <option value="all">전체</option>
-                                                <option value="deposit">입금</option>
-                                                <option value="withdraw">출금</option>
-                                            </select>
-                                            <div id='result'></div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="scrollB" style="height:607px">
-                                    <div style="position: relative; overflow: hidden; width: 100%; height: 607px;">
-                                        <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
-
-                                        </div>
-
-                                    </div>
-                                </div>
                             </span>
                         </div>
                         </article>
-
                     </div>
-
             </div>
 
-
-
-
-
-
             </section>
-
-
+            <section class="ty02">
+                <article>
+                    <span class="tabB">
+                        <table border=1 id="table_ticker" class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <td>영문명</td>
+                                    <td>단위 (KRW)</td>
+                                    <td>현재가</td>
+                                    <td>전일대비</td>
+                                    <td>거래대금</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </span>
+                </article>
+            </section>
         </div>
         </div>
         <footer>

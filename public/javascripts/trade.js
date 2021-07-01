@@ -107,7 +107,7 @@ function upbitWebSocket(selectName) {
             // mergeTickToBar(result.trade_price, result.timestamp/1000);
             mergeTickToBar(result.trade_price, result.timestamp);
             // if(++ticksInCurrentBar === dynamicTime) {
-            if(++ticksInCurrentBar === 5) {
+            if(++ticksInCurrentBar === 60) {
                 currentIndex++;
     
                 currentBar = {

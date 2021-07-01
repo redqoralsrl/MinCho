@@ -16,6 +16,11 @@ function chartSelector() {
     $('#chart_selector_btn').on("click", () => {
         paramTime = document.getElementById("chart_time_select").value;
         paramName = document.getElementById("chart_en_name_select").value;
+        let nameId = "#"+paramName;
+        const paramText = $(nameId).text();
+        $('.viewchart').text('');
+        $('.viewchart').text(paramText);
+        $('#coin_name').val(paramText);
 
         staticChart(paramTime, paramName);
         ticksInCurrentBar = 0;

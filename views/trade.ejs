@@ -4,7 +4,14 @@
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
         <title>Trade</title>
+
+        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script>
+            $(function(){
+                $('.viewchart').text('');
+                $('.viewchart').text('Bitcoin');
+                $('#coin_name').val('Bitcoin');
+            })
             function percent(per){
             $.ajax({
                 url: "/trade/number",
@@ -27,7 +34,7 @@
         <div class="allbox">
             <div class="total_box">
                 <div class="box_one">
-                    <p class="viewchart">Bitcoin</p>
+                    <p class="viewchart"></p>
                     <div class="showcoin">
                         <div class="priceone">
                             <div class="coin_value"></div>
@@ -59,12 +66,12 @@
             </div>
             <div id="chart_selector">
                 <select id="chart_en_name_select" name="chart_en_name">
-                    <option value="KRW-BTC">Bitcoin</option>
-                    <option value="KRW-ETH">Ethereum</option>
-                    <option value="KRW-LTC">Litecoin</option>
-                    <option value="KRW-XRP">Ripple</option>
-                    <option value="KRW-DOGE">Dogecoin</option>
-                    <option value="KRW-BCH">Timocoin</option>
+                    <option id="KRW-BTC" value="KRW-BTC">Bitcoin</option>
+                    <option id="KRW-ETH" value="KRW-ETH">Ethereum</option>
+                    <option id="KRW-LTC" value="KRW-LTC">Litecoin</option>
+                    <option id="KRW-XRP" value="KRW-XRP">Ripple</option>
+                    <option id="KRW-DOGE" value="KRW-DOGE">Dogecoin</option>
+                    <option id="KRW-BCH" value="KRW-BCH">Timocoin</option>
                 </select>
     
                 <select id="chart_time_select" name="chart_time">
@@ -119,6 +126,7 @@
                         </div>
                     </div>
                     <div>수수료 : 0.05%</div>
+                    <input type="hidden" name="coin_name" id="coin_name">
                     <br>
                     <% if(logined == false){ %>
                         <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
@@ -190,7 +198,7 @@
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascripts/trade.js"></script>

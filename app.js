@@ -8,8 +8,9 @@ const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const supportRouter = require('./routes/support');
-const tradeRouter = require('./routes/trade');
 const upbitWSRouter = require('./routes/upbitWS');
+const tradeRouter = require('./routes/trade');
+const mytradeRouter = require('./routes/mytrade');
 const trendsRouter = require('./routes/trends');
 const walletRouter = require('./routes/wallet');
 
@@ -28,8 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/support', supportRouter);
-app.use('/trade', tradeRouter);
 app.use('/upbitWS', upbitWSRouter);
+app.use('/trade', tradeRouter);
+app.use('/mytrade', mytradeRouter);
 app.use('/trends', trendsRouter);
 app.use('/wallet', walletRouter);
 

@@ -12,7 +12,7 @@ create table trade(
     id varchar(20) not null,
     money bigint(8) not null,
     coin_name varchar(20),
-    trade_coin_count bigint(8) not null default 0,
+    trade_coin_count float not null default 0,
     action varchar(4) not null,
     date timestamp not null DEFAULT current_timestamp
 );
@@ -27,7 +27,7 @@ create table wallet(
     num bigint(20) unsigned not null auto_increment primary key,
     id varchar(20) not null,
     coin_name varchar(20) not null,
-    wallet_coin_count bigint(8) not null default 0,
+    wallet_coin_count float not null default 0,
     avg_buy_price bigint(8) not null,
     date timestamp not null DEFAULT current_timestamp
 );

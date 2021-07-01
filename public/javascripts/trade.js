@@ -17,14 +17,36 @@ function chartSelector() {
         paramTime = document.getElementById("chart_time_select").value;
         paramName = document.getElementById("chart_en_name_select").value;
 
-        // timeToSec(paramTime);
         staticChart(paramTime, paramName);
-        // upbitWebSocket(paramName);
+        ticksInCurrentBar = 0;
+        currentBar = {
+            open: null,
+            high: null,
+            low: null,
+            close: null,
+            time: null
+        }
     });
 }
 
+function timeToSec(paramTime) {
+    let returnTime = 60;
+
+    if(paramTime.indexOf("days") > -1)
+        returnTime = 60*60*24; // 1days
+    else if(paramTime.indexOf("weeks") > -1)
+        returnTime = 60*60*24*7; // 1weeks
+    else if(paramTime.indexOf("months") > -1)
+        returnTime = 60*60*24*31; // 1months
+    else if(paramTime.indexOf("minutes") > -1) {
+        let temp = paramTime.split("/");
+        returnTime = 60*temp[1]; // 1, 3, 5, 10, 15, 30, 60, 240
+    }
+    return returnTime;
+}
+
 /* ===STATIC CHART================================================================== */
-const data = [];
+const data = []; // 동적 차트 전용
 
 var lastClose = '';
 var lastIndex = '';
@@ -44,7 +66,7 @@ function staticChart(selectTime, selectName) {
     const high = [];
     const low = [];
     const close = [];
-    const sData = []; // data 최상으로 빼면 정적 차트 select 안 먹힘
+    const sData = []; // 정적 차트 전용
     
     $.ajax({
         url: `https://api.upbit.com/v1/candles/${selectTime}?market=${selectName}&count=200`,
@@ -74,16 +96,14 @@ function staticChart(selectTime, selectName) {
 
         candleSeries.setData(staticData);
 
-        // data = sData; // 안 됨
-        lastClose = data[data.length - 1].close; // sData로 넣으면 에러뜸
+        lastClose = data[data.length - 1].close;
         lastIndex = data.length - 1;
         currentIndex = lastIndex + 1;
     });
 }
 
 /* ===WebSocket===================================================================== */
-// function upbitWebSocket(selectName, dynamicTime) {
-function upbitWebSocket(selectName) {
+function upbitWebSocket(selectTime, selectName) {
     
     $.ajax({
         url: "/upbitWS",
@@ -94,29 +114,27 @@ function upbitWebSocket(selectName) {
         // cache: false,
     })
     .done(function(result) {
-        // const tradeprice = result.trade_price;
-        // const tradetime = result.timestamp/1000;
-
         console.log("[ 클릭 ]   result.code== ", result.code, "slectName== ", selectName, result.timestamp);
-
+        
+        selectTime = timeToSec(selectTime);
+        
         if(result.code != selectName) 
-            console.log("달라 시발!");
+            console.log("달라 망할!");
         else if(result.code == selectName) {
             console.log("오예 같다");
-            // mergeTickToBar(tradeprice, tradetime);
-            // mergeTickToBar(result.trade_price, result.timestamp/1000);
+
             mergeTickToBar(result.trade_price, result.timestamp);
-            // if(++ticksInCurrentBar === dynamicTime) {
-            if(++ticksInCurrentBar === 5) {
+            console.log("몇번째 찍는중? ", ticksInCurrentBar, "/", selectTime);
+
+            if(++ticksInCurrentBar === selectTime) {
                 currentIndex++;
-    
                 currentBar = {
                     open: null,
                     high: null,
                     low: null,
                     close: null,
                     // time: result.timestamp/1000,
-                    time: result.timestamp,
+                    time: result.timestamp
                 };
                 ticksInCurrentBar = 0;
             }
@@ -141,8 +159,7 @@ function mergeTickToBar(price, current_time) {
         currentBar.low = Math.min(currentBar.low, price);
     }
     // candleSeries.update(currentBar);
-    console.log(currentBar.time, "sdsdsdsd");
-    candleSeries.update({time: currentBar.time, open: currentBar.open, high: currentBar.high, low: currentBar.low, close: currentBar.close});
+    candleSeries.update({time: currentBar.time/1000, open: currentBar.open, high: currentBar.high, low: currentBar.low, close: currentBar.close});
 }
 
 /* ===COIN LIST===================================================================== */
@@ -254,20 +271,6 @@ function setUpbitData(){
 /* ===FUNC CALL===================================================================== */
 let paramName = "KRW-BTC";
 let paramTime = "minutes/1";
-// let dynamicTime = 60;
-
-// function timeToSec(paramTime) {
-//     if(paramTime.indexOf("days") > -1)
-//         dynamicTime = 60*60*24; // 1days
-//     else if(paramTime.indexOf("weeks") > -1)
-//         dynamicTime = 60*60*24*7; // 1weeks
-//     else if(paramTime.indexOf("months") > -1)
-//         dynamicTime = 60*60*24*31; // 1months
-//     else if(paramTime.indexOf("minutes") > -1) {
-//         let temp = paramTime.split("/");
-//         dynamicTime = temp[1]; // 1, 3, 5, 10, 15, 30, 60, 240
-//     }
-// }
 
 $(function() {
     chartSelector();
@@ -275,29 +278,8 @@ $(function() {
     staticChart(paramTime, paramName);
 
     function callWS() {
-        // upbitWebSocket(paramName, dynamicTime);
-        upbitWebSocket(paramName);
+        upbitWebSocket(paramTime, paramName);
     }
     
     setInterval(callWS, 3000);
-
-    /* 잘 됐던거 같은데 갑자기 에러 뜸 ==> upbitWebSocket 안으로 삽입
-    setInterval(callWS, 900);
-    setInterval(function() {        
-        mergeTickToBar(tradeprice, tradetime);
-        if(++ticksInCurrentBar === 3) {
-            currentIndex++;
-
-            currentBar = {
-                open: null,
-                high: null,
-                low: null,
-                close: null,
-                time: tradetime,
-            };
-
-            ticksInCurrentBar = 0;
-        }
-    }, 1000);
-    */
 });

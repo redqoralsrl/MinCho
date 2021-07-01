@@ -16,7 +16,8 @@ function chartSelector() {
     $('#chart_selector_btn').on("click", () => {
         paramTime = document.getElementById("chart_time_select").value;
         paramName = document.getElementById("chart_en_name_select").value;
-        
+
+        // timeToSec(paramTime);
         staticChart(paramTime, paramName);
         // upbitWebSocket(paramName);
     });
@@ -29,8 +30,6 @@ var lastClose = '';
 var lastIndex = '';
 var currentIndex = '';
 var ticksInCurrentBar = 0;
-// var tradeprice = ''; // upbitWebSocket 안으로
-// var tradetime = ''; // upbitWebSocket 안으로
 var currentBar = {
     open: null,
     high: null,
@@ -83,29 +82,32 @@ function staticChart(selectTime, selectName) {
 }
 
 /* ===WebSocket===================================================================== */
-function upbitWebSocket(selectName, dynamicTime) {
+// function upbitWebSocket(selectName, dynamicTime) {
+function upbitWebSocket(selectName) {
     
     $.ajax({
         url: "/upbitWS",
         type: "POST",
         dataType: "json",
         data: { "selectName": selectName },
-        async: false,
-        cache: false,
+        // async: false,
+        // cache: false,
     })
     .done(function(result) {
-        // console.log("뿌엥", result);
+        // const tradeprice = result.trade_price;
+        // const tradetime = result.timestamp/1000;
 
-        // tradeprice = result.trade_price; // 아래처럼 수정
-        // tradetime = result.timestamp/1000; // 아래처럼 수정
-            const tradeprice = result.trade_price;
-            const tradetime = result.timestamp/1000;
-            console.log("클릭할 때 잘 바뀌니? ", result.code, tradeprice, tradetime);
+        console.log("[ 클릭 ]   result.code== ", result.code, "slectName== ", selectName, result.timestamp);
 
-        if(selectName == result.code){
-
-            mergeTickToBar(tradeprice, tradetime);
-            if(++ticksInCurrentBar === dynamicTime) {
+        if(result.code != selectName) 
+            console.log("달라 시발!");
+        else if(result.code == selectName) {
+            console.log("오예 같다");
+            // mergeTickToBar(tradeprice, tradetime);
+            // mergeTickToBar(result.trade_price, result.timestamp/1000);
+            mergeTickToBar(result.trade_price, result.timestamp);
+            // if(++ticksInCurrentBar === dynamicTime) {
+            if(++ticksInCurrentBar === 5) {
                 currentIndex++;
     
                 currentBar = {
@@ -113,12 +115,13 @@ function upbitWebSocket(selectName, dynamicTime) {
                     high: null,
                     low: null,
                     close: null,
-                    time: tradetime,
+                    // time: result.timestamp/1000,
+                    time: result.timestamp,
                 };
                 ticksInCurrentBar = 0;
             }
         }
-        
+        else console.log("둘 다 아니면 무 ㅓㄴ데");
     })
     .fail(function(){
         console.log("업비트 웹소켓 에러");
@@ -137,7 +140,9 @@ function mergeTickToBar(price, current_time) {
         currentBar.high = Math.max(currentBar.high, price);
         currentBar.low = Math.min(currentBar.low, price);
     }
-    candleSeries.update(currentBar);
+    // candleSeries.update(currentBar);
+    console.log(currentBar.time, "sdsdsdsd");
+    candleSeries.update({time: currentBar.time, open: currentBar.open, high: currentBar.high, low: currentBar.low, close: currentBar.close});
 }
 
 /* ===COIN LIST===================================================================== */
@@ -249,20 +254,20 @@ function setUpbitData(){
 /* ===FUNC CALL===================================================================== */
 let paramName = "KRW-BTC";
 let paramTime = "minutes/1";
-let dynamicTime = 60;
+// let dynamicTime = 60;
 
-function timeToSec(paramTime) {
-    if(paramTime.indexOf("days") > -1)
-        dynamicTime = 60*60*24; // 1days
-    else if(paramTime.indexOf("weeks") > -1)
-        dynamicTime = 60*60*24*7; // 1weeks
-    else if(paramTime.indexOf("months") > -1)
-        dynamicTime = 60*60*24*31; // 1months
-    else if(paramTime.indexOf("minutes") > -1) {
-        let temp = paramTime.split("/");
-        dynamicTime = temp[1]; // 1, 3, 5, 10, 15, 30, 60, 240
-    }
-}
+// function timeToSec(paramTime) {
+//     if(paramTime.indexOf("days") > -1)
+//         dynamicTime = 60*60*24; // 1days
+//     else if(paramTime.indexOf("weeks") > -1)
+//         dynamicTime = 60*60*24*7; // 1weeks
+//     else if(paramTime.indexOf("months") > -1)
+//         dynamicTime = 60*60*24*31; // 1months
+//     else if(paramTime.indexOf("minutes") > -1) {
+//         let temp = paramTime.split("/");
+//         dynamicTime = temp[1]; // 1, 3, 5, 10, 15, 30, 60, 240
+//     }
+// }
 
 $(function() {
     chartSelector();
@@ -270,7 +275,8 @@ $(function() {
     staticChart(paramTime, paramName);
 
     function callWS() {
-        upbitWebSocket(paramName, dynamicTime);
+        // upbitWebSocket(paramName, dynamicTime);
+        upbitWebSocket(paramName);
     }
     
     setInterval(callWS, 3000);

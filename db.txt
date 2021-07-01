@@ -58,7 +58,7 @@ create table wallet(
     num bigint(8) unsigned not null auto_increment primary key,
     id varchar(20) not null,
     name varchar(20) not null,
-    amount_money bigint(8) unsigned,  
+    amount_money bigint(8) unsigned not null,  
     withdraw_deposit varchar(4) not null,
     date timestamp not null DEFAULT current_timestamp
 );

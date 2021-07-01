@@ -113,17 +113,22 @@
                     </div>
                     <div class="price_order">
                         <div id="leftdiv">주문가격</div>
-                        <input class="coin_value" name="coin_value"></input>
+                        <input class="coin_value" name="coin_value" readonly></input>
                     </div>
                     <div>
                         <div id="leftdiv">주문금액</div>
                         <input id="user_krw" name="number" type="number" style="width: 70%;" required> KRW<br>
-                        <div class="centerdiv">
-                            <input class="per" onclick="percent(25)" type="button" value="25%">
-                            <input class="per" onclick="percent(50)" type="button" value="50%">
-                            <input class="per" onclick="percent(75)" type="button" value="75%">
-                            <input class="per" onclick="percent(100)" type="button" value="100%">
-                        </div>
+                        <% if(logined == false){ %>
+                            <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
+                        <% }else{ %>
+                            <div class="centerdiv">
+                                <input class="per" onclick="percent(25)" type="button" value="25%">
+                                <input class="per" onclick="percent(50)" type="button" value="50%">
+                                <input class="per" onclick="percent(75)" type="button" value="75%">
+                                <input class="per" onclick="percent(100)" type="button" value="100%">
+                            </div>
+                        <% } %> 
+                        
                     </div>
                     <div>수수료 : 0.05%</div>
                     <input type="hidden" name="coin_name" id="coin_name">
@@ -152,21 +157,30 @@
                     </div>
                     <div class="price_order">
                         <div id="leftdiv">매도가격</div>
-                        <div class="coin_value"></div>
+                        <input class="coin_value" name="coin_value"></input>
                     </div>
                     <div>
                         <div id="leftdiv">주문금액</div>
-                        <input type="number" style="width: 80%;"> 개<br>
-                        <div class="centerdiv">
-                            <input onclick="" id="per" type="button" value="25%">
-                            <input onclick="" id="per" type="button" value="50%">
-                            <input onclick="" id="per" type="button" value="75%">
-                            <input onclick="" id="per" type="button" value="100%">
-                        </div>
+                        <input type="number" style="width: 80%;"> KRW<br>
+                        <% if(logined == false){ %>
+                            <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
+                        <% }else{ %>
+                            <div class="centerdiv">
+                                <input class="per" onclick="percent(25)" type="button" value="25%">
+                                <input class="per" onclick="percent(50)" type="button" value="50%">
+                                <input class="per" onclick="percent(75)" type="button" value="75%">
+                                <input class="per" onclick="percent(100)" type="button" value="100%">
+                            </div>
+                        <% } %> 
                     </div>
                     <div>수수료 : 0.05%</div>
+                    <div>최소주문금액 : 1000KRW</div>
                     <br>
-                    <input class="endbtn" type="submit" value="매도">
+                    <% if(logined == false){ %>
+                        <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
+                    <% }else{ %>
+                        <input class="endbtn" type="submit" value="매도">
+                    <% } %> 
                 </form>
             </div>
             

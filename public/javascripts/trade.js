@@ -21,6 +21,9 @@ function chartSelector() {
         $('.viewchart').text('');
         $('.viewchart').text(paramText);
         $('#coin_name').val(paramText);
+        $('#coin_name2').val(paramText);
+        coinCount();
+        $('#coinCounts').val(0);
 
         staticChart(paramTime, paramName);
         ticksInCurrentBar = 0;
@@ -246,15 +249,13 @@ function setUpbitData(){
                     }else{
                         $(".showcoin").addClass('blue');
                         $(".plu").html('');
-                        // $(".plu").html("-");
                         $(".arrow").html('');
                         $(".arrow").html(`<i class="fas fa-caret-down"></i>`);
                     }
-                    // $(".coin_value").html('');
+                    $(".coin_value").html('');
                     $(".coin_before").html('');
                     $(".change_price").html('');
-                    $(".coin_value").val(tickers[i].trade_price.toLocaleString('ko-KR'));
-                    // $(".coin_value").html(`${tickers[i].trade_price.toLocaleString('ko-KR')}`);
+                    $(".coin_value").html(`${tickers[i].trade_price.toLocaleString('ko-KR')}`);
                     $(".coin_before").html(`${comma((tickers[i].signed_change_rate*100).toFixed(2))}%`);
                     $(".change_price").html(`${tickers[i].change_price.toLocaleString('ko-KR')}`);
 

@@ -32,6 +32,6 @@ create table wallet(
     date timestamp not null DEFAULT current_timestamp
 );
 coin_name : 코인이름
-acc_coin_count : 해당 누적 코인 개수
+wallet_coin_count : 해당 누적 코인 개수
 avg_price : 평균 매수가
-(매수금액 * 매수코인개수)의 총합 / 누적코인개수
+(평균매수가*누적코인개수 + 매수금액*매수코인개수) / (누적코인개수+매수코인개수)

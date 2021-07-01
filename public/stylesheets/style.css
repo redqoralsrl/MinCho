@@ -126,7 +126,20 @@ table, td, th{
 /* trade */
 .allbox{
   margin: 0 auto;
-  width: 700px;
+  width: 1300px;
+}
+.tab1{
+  display: inline-block;
+  display: inline-block;
+    margin: 20px 0 50px;
+  padding: 30px;
+  background-color: #fff;
+}
+.tab2{
+  float: right;
+  padding: 30px;
+  margin-top: 20px;
+  background-color: #fff;
 }
 .trade_body{
   background: #eeeeee;
@@ -249,4 +262,43 @@ table, td, th{
   background: rgb(127, 219, 255);
   padding: 20px;
   border-radius: 10px 10px;
+}
+
+/* 시세표 */
+#table_ticker{
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+#table_ticker thead tr{
+  border-top: 1px solid rgb(206, 206, 206);
+}
+#table_ticker thead tr th{
+  height: 30px;
+  background-color: #f9fafc;
+  color: #666;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: Dotum,Noto Sans KR,sans-serif;
+  border: none;
+}
+#table_ticker tbody tr{
+  height: 45px;
+}
+#table_ticker tbody tr td{
+  padding : 10px;
+  padding: 10px 20px 10px 20px;
+  border-left: none;
+  border-right: none;
+}
+#table_ticker tbody tr .en_name{
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+#table_ticker tbody tr em{
+  font-size: 11px;
+  font-weight: 500;
+  color: #666;
+  font-style: normal;
 }

@@ -12,26 +12,14 @@ router.use(
   })
 );
 
-// router.get("/", function (req, res, next) {
-//   if (req.session.logined == true) {
-//     res.render("wallet", {
-//       logined: true,
-//       title: ejs.render("title"),
-//     });
-//   } else {
-//     res.render("wallet", {
-//       logined: false,
-//       title: ejs.render("title"),
-//     });  
-//   }
-// });
+
 
 router.get("/", (req, res) => {
   if(req.session.logined != true){
     res.send('<script>alert("로그인 후 이용해주세요"); location.replace("/login");</script>')
   }else{
     client.query(
-      "select * from wallet where id=? order by num desc;",
+      "select * from trade where id=? order by num desc;",
       [req.session.userId],
       (err, data) => {
         if(err) console.log(err);
@@ -41,11 +29,9 @@ router.get("/", (req, res) => {
           id: req.session.userId,
           name: req.session.name,
           balance: req.session.balance,
-          wallet : data,
+          trade : data,
           moment: moment,
-          // withdraw_deposit: req.session.withdraw_deposit,
-          // date : req.session.date,
-          // amount_money:req.session.amount_money,
+        
           title: ejs.render("title"),
         });
       }
@@ -58,17 +44,17 @@ router.post("/deposit", function (req, res, next) {
   //   const balance = req.body.balance;
   var id = req.session.userId;
   var balance = req.session.balance;
-  var name = req.session.name;
-  var withdraw_deposit = "입금";
-  var amount = req.body.amount_money;
+  // var name = req.session.name;
+  var action  = "입금";
+  var money = req.body.money;
   
   client.query("select * from userdb where id=?", [id], (err, data) => {
     let user_balance = data[0].balance;
     // console.log('user돈',user_balance);
-    let result_balance = parseInt(user_balance) + parseInt(amount);
-    var datas = [id, name, amount, withdraw_deposit];
+    let result_balance = parseInt(user_balance) + parseInt(money);
+    var datas = [id, money, action];
     var sql =
-      "insert into wallet (id,name,amount_money,withdraw_deposit,date) values(?,?,?,?,now())";
+      "insert into trade (id,money,action,date) values(?,?,?,now())";
     client.query(sql, datas, function (err, row) {
 
       client.query(
@@ -89,22 +75,22 @@ router.post("/deposit", function (req, res, next) {
 router.post("/withdraw", function (req, res, next) {
   var id = req.session.userId;
   var balance = req.session.balance;
-  var name = req.session.name;
-  var withdraw_deposit = "출금";
-  var amount = req.body.amount_money;
+  // var name = req.session.name;
+  var action  = "출금";
+  var money = req.body.money;
   
   client.query("select * from userdb where id=?", [id], (err, data) => {
     const user_balance = data[0].balance;
 
     // console.log('user돈',user_balance);
-    const result_balance = parseInt(user_balance) - parseInt(amount);
+    const result_balance = parseInt(user_balance) - parseInt(money);
     if(result_balance < 0){
       res.send('<script>alert("잔액이 부족합니다");history.back();</script>');
   }
     else{
-      var datas = [id, name, amount, withdraw_deposit];
+      var datas = [id, money, action];
       var sql =
-      "insert into wallet (id,name,amount_money,withdraw_deposit,date) values(?,?,?,?,now())";
+      "insert into trade (id,money,action,date) values(?,?,?,now())";
       client.query(sql, datas, function (err, row) {
         client.query(
           "update userdb set balance=? where id=?",

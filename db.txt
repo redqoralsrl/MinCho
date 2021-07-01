@@ -6,7 +6,53 @@ create table userdb(
     balance bigint(8) unsigned default 0
 );
 
-// 지갑 DB
+// 바뀐 거래 기록 DB
+create table trade(
+    num bigint(8) unsigned not null auto_increment primary key,
+    id varchar(20) not null,
+    money bigint(8) not null,
+    coin_name varchar(20),
+    trade_coin_count bigint(8) not null default 0,
+    action varchar(4) not null,
+    date timestamp not null DEFAULT current_timestamp
+);
+money : 거래금액 (매수 매도 입금 출금 거래액)
+coin_name : 거래한 해당 코인 이름 ( 혹은 입출금 시 null 값 )
+trade_coin_count : 매수한 코인 개수
+action : 입금, 출금, 매수, 매도 중 한 행동
+
+
+// 블록체인 지갑 개수 DB
+create table wallet(
+    num bigint(20) unsigned not null auto_increment primary key,
+    id varchar(20) not null,
+    coin_name varchar(20) not null,
+    wallet_coin_count bigint(8) not null default 0,
+    avg_buy_price bigint(8) not null,
+    date timestamp not null DEFAULT current_timestamp
+);
+coin_name : 코인이름
+acc_coin_count : 해당 누적 코인 개수
+avg_price : 평균 매수가
+(매수금액 * 매수코인개수)의 총합 / 누적코인개수
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 거래 기록 DB
 wallet (
 create table wallet(
     num bigint(8) unsigned not null auto_increment primary key,
@@ -20,8 +66,7 @@ amount_money : 금액
 withdraw_deposit : 입출금
 balance : 잔고
 
-// 거래  DB
-
+// 블록체인 지갑 개수 DB
 create table trade(
     num bigint(20) unsigned not null auto_increment primary key,
     id varchar(20) not null,

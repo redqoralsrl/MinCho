@@ -46,8 +46,10 @@ function setUpbitData(){
         .done(function(tickers){
             $("#table_ticker > tbody > tr").remove();
             for(let i = 0; i < tickers.length; i++){
-                if(arr_english_name[i] == "Bitcoin Cash")
+                if(arr_english_name[i] == "Bitcoin Cash") {
                     arr_english_name[i] = "Timocoin";
+                    arr_market_name[i] = "KRW-TMC";
+                }
 
 
                 let rowHtml = `<tr><td class="en_name">` + arr_english_name[i] + "</td>";

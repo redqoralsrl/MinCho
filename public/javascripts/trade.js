@@ -281,7 +281,7 @@ function setUpbitData(){
         console.log("[ ERROR ] UPbit API connect error");
     });
 
-    setTimeout(setUpbitData, 1000);
+    // setTimeout(setUpbitData, 1000);
 }
 
 /* ===FUNC CALL===================================================================== */

@@ -24,6 +24,11 @@
 }
 .faq-content {
   border-bottom: 1px solid #e0e0e0;
+  margin-left: 15px;
+}
+
+#question{
+  margin-left: 10px;
 }
 .question {
   font-size: 19px;
@@ -136,6 +141,7 @@ article{
     display: block;
     width: 16px;
     height: 16px;
+
     margin-top: 13px;
     background: url(https://cdn.upbit.com/images/bg.e801517.png) -450px -30px no-repeat;
     overflow: hidden;
@@ -232,6 +238,8 @@ li, ol, ul {
   color: #115dcb;
   font-weight: 700;
 }
+
+
 a:hover {
   text-decoration: underline;
 }
@@ -240,6 +248,19 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+input{
+  outline: none;
+}
+#deposit, #withdraw {
+  cursor: pointer; 
+  border: 1px solid #999;
+  margin-left: 10px;
+  background-color: #24c0eb;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  color: #fff;
+}
+
 .f_clear:after {
   content: ".";
   height: 0;
@@ -273,7 +294,7 @@ input::-webkit-inner-spin-button {
 }
 .mainB section article .titB {
   display: block;
-  height: 42px;
+  height: 71px;
   padding: 0 14px;
   border-bottom: 1px solid #d4d6dc;
 }
@@ -284,7 +305,7 @@ input::-webkit-inner-spin-button {
 }
 .mainB section article .titB strong {
   float: left;
-  margin-top: 8px;
+  margin-top: 25px;
   color: #2b2b2b;
   font-size: 16px;
   font-weight: 700;
@@ -321,5 +342,8 @@ input::-webkit-inner-spin-button {
 .mainB section article .tabB {
   display: block;
   width: 100%;
+}
+.faq-content table tr th{
+  color: #3a3a3b;
 }
 

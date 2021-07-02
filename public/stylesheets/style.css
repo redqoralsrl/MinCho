@@ -264,13 +264,10 @@
 .main_text{
   margin-bottom: 30px;
   text-align: center;
-  /* font-family: 'HangeulNuri-Bold'; */
   font-family: 'Eulyoo1945-SemiBold';
+  font-size: 27px;
 }
-.main_text h1{
-  /* font-family: 'HangeulNuri-Bold'; */
-  
-}
+
 @font-face {
   font-family: 'Eulyoo1945-SemiBold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff') format('woff');
@@ -279,7 +276,7 @@
 }
 
 .main_text h3{
-  margin-top: 10PX;
+  margin-top: 20PX;
 }
 .main_img{
   width: 1000px;
@@ -327,6 +324,7 @@ width: 30%;
 }
 
 
+
 .text_1 img{
   width: 100%;
   margin-bottom: 50px;
@@ -334,16 +332,9 @@ width: 30%;
 .text_1 h1 {
   text-align: center;
   font-size: 40px;
-  font-family: 'HangeulNuri-Bold';
-  /* font-family: 'Eulyoo1945-SemiBold'; */
-  
+  font-family: 'Eulyoo1945-SemiBold';
 }
-@font-face {
-  font-family: 'HangeulNuri-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/HangeulNuri-Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+
 .text2{
   padding: 5px;
     display: flex;

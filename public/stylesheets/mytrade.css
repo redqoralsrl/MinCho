@@ -1,0 +1,94 @@
+.main {
+    position: relative;
+    width: 1400px;
+    margin: 0 auto;
+    padding-top: 72px;
+}
+
+.main .mytrade {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.mytradeState {
+    margin: 0;
+    padding: 0;
+}
+
+.main .floating {
+    position: fixed; 
+    right: 45%; 
+    margin-right: -720px; 
+}
+
+.tradeAmount {
+    margin-bottom: 28px;
+}
+
+.tradeAmountRowTotal {
+    display: table;
+    /* float: left; */
+    width: 236px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f1f4;
+}
+
+.tradeAmountTitleCell {
+    display: table-cell;
+}
+
+.tradeAmountTitle {
+    font-size: 14px;
+    color: #666;
+}
+
+.tradeAmountCountCell {
+    display: table-cell;
+    text-align: right;
+}
+
+.tradeAmountCount {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.tradeAmountUnit {
+    display: inline-block;
+    padding-left: 7px;
+    padding-right: 7px;
+    vertical-align: bottom;
+    font-size: 11px;
+    color: #666;
+}
+
+.conintable {
+    margin-top: 50px;
+}
+
+.floating thead{
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.floating td {
+    padding-right: 18px;
+}
+
+.en_name {
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.market_name {
+    font-size: 12px;
+    color: #666;
+}
+
+.coinlistNum {
+    text-align: right;
+}

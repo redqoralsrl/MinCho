@@ -62,8 +62,8 @@ function setUpbitData(){
 
                 $("#table_ticker > tbody:last").append(rowHtml);
             }
-        });
-    })
+            });
+        })
     .fail(function(){
         console.log("[ ERROR ] UPbit API connect error");
     });

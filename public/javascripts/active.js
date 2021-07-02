@@ -6,6 +6,7 @@ $("document").ready(function () {
     $(".guide_content").hide();
     $(".guide_content").eq(0).show();
 
+    
     // sideNav
     $("ul.tabs li").click(function () {
         $("ul.tabs li").removeClass("active")

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var max = height * num;
 	var move = 0;
 	function noticeRolling(){
-		move += height;
+		move += height+4;
 		$(".rolling").animate({"top":-move},600,function(){
 			if( move >= max ){
 				$(this).css("top",0);

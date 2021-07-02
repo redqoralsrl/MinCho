@@ -41,19 +41,19 @@ function setUpbitData(){
         
         $.ajax({
             url: "https://api.upbit.com/v1/ticker?markets=" + arr_markets,
-            dataType: "json"
+            dataType: "json",
         })
         .done(function(tickers){
             $("#table_ticker > tbody > tr").remove();
             for(let i = 0; i < tickers.length; i++){
                 if(arr_english_name[i] == "Bitcoin Cash")
-                    arr_english_name[i] = "Timocoin"
+                    arr_english_name[i] = "Timocoin";
 
 
-                let rowHtml = `<tr><td id=\"list_${arr_english_name[i]}\" class="en_name">` + arr_english_name[i] + "</td>";
-                rowHtml += `<td rowspan=\"2\" id=\"${arr_english_name[i]}\" class="coinlistNum">` + comma(tickers[i].trade_price)+"</td>";
-                rowHtml += "<td rowspan=\"2\" class=\"coinlistNum\">" + comma((tickers[i].signed_change_rate*100).toFixed(2))+"</td>";
-                rowHtml += "<td rowspan=\"2\" class=\"coinlistNum\">" 
+                let rowHtml = `<tr><td class="en_name">` + arr_english_name[i] + "</td>";
+                rowHtml += `<td rowspan="2" class="coinlistNum">` + comma(tickers[i].trade_price)+"</td>";
+                rowHtml += `<td rowspan="2" class="coinlistNum">` + comma((tickers[i].signed_change_rate*100).toFixed(2))+"</td>";
+                rowHtml += `<td rowspan="2" class="coinlistNum">` 
                 + comma((tickers[i].acc_trade_price_24h > 1000000 ? ( tickers[i].acc_trade_price_24h / 1000000 ) : tickers[i].acc_trade_price_24h).toFixed(0)) 
                 + (tickers[i].acc_trade_price_24h > 1000000 ? "million" : "") + "</td></tr>";
                 rowHtml += "<tr><td class=\"market_name\">" + arr_market_name[i] + "</td>";

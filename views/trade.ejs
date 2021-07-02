@@ -55,6 +55,7 @@
                 })
                 .done((result)=>{
                     $('#coinCounts').val(result['result']);
+                    $('.coinCounts').html(result['result'].toLocaleString('ko-KR')+' 개');
                     console.log('tlqltqkqtlqtk', result['result']);
                 })
                 .fail(function(){
@@ -73,7 +74,7 @@
                         <p class="viewchart" onchange="coinCount()"></p>
                         <div class="showcoin">
                             <div class="priceone">
-                                <div class="coin_value"></div>
+                                <div class="coin_value" style="font-size: 30px; padding-right: 10px;"></div>
                                 <div class="krw"> KRW</div>
                             </div>
                             <div class="before">
@@ -133,9 +134,9 @@
                 <div class="buybox">
                     <form id="buy" action="/trade/buy" method="POST">
                         <h3>매수</h3>
-                        <div>
-                            <div id="leftdiv">주문가능</div>
-                            <div>
+                        <dl>
+                            <dt id="leftdiv">주문가능</dt>
+                            <dd>
                                 <% if(logined == true){ %>
                                     <% if(data != ""){ %>
                                         <%= data[0].balance.toLocaleString('ko-KR') %>
@@ -147,86 +148,84 @@
                                     0 KRW
                                 <% } %>
                                 
-                            </div>
-                        </div>
-                        <div class="price_order">
-                            <div id="leftdiv">주문가격</div>
-                            <input class="coin_value" name="coin_value"></input>
-                        </div>
-                        <div>
-                            <div id="leftdiv">주문금액</div>
-                            <input id="user_krw" name="number" type="number" style="width: 70%; margin-bottom: 10px;" value="0" required> KRW<br>
+                            </dd>
+                            <dt id="leftdiv">주문가격</dt>
+                            <dd><input class="coin_value" name="coin_value" style="width: 100%;"/></dd>
+                            <dt id="leftdiv">주문금액</dt>
+                            <dd><input id="user_krw" name="number" type="number" style="width: 70%; padding: 4px; border: 1px solid #999;" value="0" required> KRW<br></dd>
                             <% if(logined == false){ %>
-                                <a href="/login">
+                                <dd><a href="/login">
                                     <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
-                                </a>
+                                </a></dd>
                             <% }else{ %>
-                                <div class="centerdiv">
+                                <dd class="centerdiv">
                                     <input class="per" onclick="percent(25)" type="button" value="25%">
                                     <input class="per" onclick="percent(50)" type="button" value="50%">
                                     <input class="per" onclick="percent(75)" type="button" value="75%">
                                     <input class="per" onclick="percent(100)" type="button" value="100%">
-                                </div>
+                                </dd>
                             <% } %> 
-                            
-                        </div>
-                        <div>수수료 : 0.05%</div>
-                        <% if(logined == true){ %>
-                        <div>최소주문금액 : 1000KRW</div>
-                        <% } %>
-                        <input type="hidden" name="coin_name" id="coin_name">
-                        <br>
-                        <% if(logined == false){ %>
-                            <a href="/login">
-                                <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
-                            </a>
-                        <% }else{ %>
-                            <input class="endbtn" type="submit" value="매수">
-                        <% } %> 
-                    </form>
-                    <form id="sell" action="/trade/sell" method="POST">
-                        <h3>매도</h3>
-                        <div>
-                            <div id="leftdiv">보유 코인</div>
-                            <div>
-                                <% if(logined == true){ %>
-                                    <input id="coinCounts" name="coinCounts" type="number" value="0"> 개
-                                <% }else{ %>
-                                    0 개
-                                <% } %>
-                                
-                            </div>
-                        </div>
-                        <div class="price_order">
-                            <div id="leftdiv">매도가격</div>
-                            <input class="coin_value" name="coin_value"></input>
-                        </div>
-                        <div>
-                            <div id="leftdiv">매도할 코인</div>
-                            <input id="user_coin" name="user_coin" type="text" style="width: 70%; margin-bottom: 10px;" value="0"> 개<br>
+                            <dt></dt>
+                            <dd></dd>
+                        </dl>
+                        <div class="fixed_bottom">
+                            <p>수수료 : 0.05%</p>
+                            <% if(logined == true){ %>
+                            <p style="display: inline-block;">최소주문금액 : 1000KRW</p>
+                            <% } %>
+                            <input type="hidden" name="coin_name" id="coin_name">
+                            <br/>
                             <% if(logined == false){ %>
                                 <a href="/login">
                                     <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
                                 </a>
                             <% }else{ %>
-                                <div class="centerdiv">
+                                <input class="endbtn" type="submit" value="매수">
+                            <% } %> 
+                        </div>
+                    </form>
+                    <form id="sell" action="/trade/sell" method="POST">
+                        <h3>매도</h3>
+                        <dl>
+                            <dt id="leftdiv">보유 코인</dt>
+                            <dd>
+                                <% if(logined == true){ %>
+                                    <p class="coinCounts"></p>
+                                    <input id="coinCounts" name="coinCounts" type="hidden" value="0">
+                                <% }else{ %>
+                                    0 개
+                                <% } %>
+                                
+                            </dd>
+                            <dt id="leftdiv">매도가격</dt>
+                            <dd><input class="coin_value" name="coin_value" style="width:100%;"/></dd>
+                            <dt id="leftdiv">매도할 코인</dt>
+                            <dd><input id="user_coin" name="user_coin" type="text" style="width: 70%; padding: 4px; border: 1px solid #999;" value="0"> 개<br></dd>
+                            <% if(logined == false){ %>
+                                <dd><a href="/login">
+                                    <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
+                                </a></dd>
+                            <% }else{ %>
+                                <dd class="centerdiv">
                                     <input class="per" onclick="coinPercent(25)" type="button" value="25%">
                                     <input class="per" onclick="coinPercent(50)" type="button" value="50%">
                                     <input class="per" onclick="coinPercent(75)" type="button" value="75%">
                                     <input class="per" onclick="coinPercent(100)" type="button" value="100%">
-                                </div>
+                                </dd>
+                            <% } %> 
+                        </dl>
+                        <div class="fixed_bottom">
+                            <p>수수료 : 0.05%</p>
+                            <input type="hidden" name="coin_name" id="coin_name2">
+                            <br>
+                            <% if(logined == false){ %>
+                                <a href="/login">
+                                    <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
+                                </a>
+                            <% }else{ %>
+                                <input class="endbtn" type="submit" value="매도">
                             <% } %> 
                         </div>
-                        <div>수수료 : 0.05%</div>
-                        <input type="hidden" name="coin_name" id="coin_name2">
-                        <br>
-                        <% if(logined == false){ %>
-                            <a href="/login">
-                                <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center;">
-                            </a>
-                        <% }else{ %>
-                            <input class="endbtn" type="submit" value="매도">
-                        <% } %> 
                     </form>
                 </div>
             </div>

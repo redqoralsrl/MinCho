@@ -136,6 +136,8 @@ table, td, th{
   background-color: #fff;
 }
 .tab2{
+  position: sticky;
+  top: 150px;
   float: right;
   padding: 30px;
   margin-top: 20px;
@@ -208,37 +210,72 @@ table, td, th{
   background: #fff;
 }
 .buybox{
-  margin-top: 10px;
+  margin:0 auto;
+  margin-top: 70px;
   width: 685px;
   display: flex;
   justify-content: space-around;
 }
 #buy, #sell{
-  border : 2px solid #fff;
-  background: rgb(255, 183, 183);
+  position: relative;
+  background: #fff;
   padding: 20px;
-  border-radius: 10px 10px;
+  width: 280px;
+  height: 340px;
   text-align: right;
   font-weight: bolder;
+  box-shadow: 2px 2px 6px 1px rgb(0 0 0 / 20%);
 }
 #buy h3, #sell h3{
   text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #dc0000;
+  width: 84%;
+  color: #dc0000;
+  margin: 0 auto;
+}
+#sell h3{
+  border-bottom: 2px solid #366afb;
+  color: #366afb;
+}
+#buy dl, #sell dl{
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+#buy dl dt, #sell dl dt{
+  width: 90px;
+  padding: 10px 0;
+  float: left;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+  height: 21px;
+}
+#buy dl dd, #sell dl dd{
+  padding: 10px 0;
+  width: 190px;
+  float: right;
 }
 #leftdiv{
   text-align: left;
 }
 .coin_value{
   border: none;
-  
+  background: transparent;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 700;
 }
 .centerdiv{
-  text-align: center;
+  width: 100%!important;
+  text-align: right;
 }
-#per{
+.per{
   padding: 4px;
   font-weight: bold;
   background: #fff;
-  border: 1px solid black;
+  border: 1px solid #999;
   border-radius: 3px 3px;
   width: 45px;
   margin-top: 2px;
@@ -247,21 +284,43 @@ table, td, th{
   background: rgb(255, 183, 183);
   color: #fff;
 }
+
+.fixed_bottom{
+  position: absolute;
+  position: absolute;
+  bottom: 15px;
+  width: 87%;
+  font-size: 13px;
+  font-weight: 500;
+}
+.fixed_bottom p:first-child{
+  padding-right: 8px;
+  display: inline-block;
+}
 .endbtn{
   width: 100%;
+  padding: 8px;
   font-weight: bolder;
   font-size: 15px;
+  border: 1px solid #ff4e4e;
+  background-color: #ffffff;
   border-radius: 5px 5px;
+  letter-spacing: 2px;
+  margin: 10px 0;
+}
+#sell .endbtn{
+  border: 1px solid #4752ec;
 }
 .endbtn:hover{
   background: rgb(255, 183, 183);
+  border: 1px solid rgb(230, 230, 230);
   color: #fff;
+  transition: all .4s ease-out;
 }
-#sell{
-  border : 1px solid #dcdc;
-  background: rgb(127, 219, 255);
-  padding: 20px;
-  border-radius: 10px 10px;
+#sell .endbtn:hover{
+  background: rgb(183, 194, 255);
+  border: 1px solid rgb(230, 230, 230);
+  transition: all .4s ease-out;
 }
 
 /* 시세표 */

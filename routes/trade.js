@@ -47,8 +47,8 @@ router.post('/buy', function(req,res,next){
     const user_id = req.session.userId;
     const trd_coin_cnt = real_money/coin_price;
     // 최소 주문 금액 설정
-    if(user_money < 1000) res.send("<script>alert('최소 주문금액 맞춰주세요!');history.back();</script>")
-    else {
+    if(user_money < 1000) res.send("<script>alert('최소 주문금액 맞춰주세요!');history.back();</script>");
+    else{
         client.query('select * from userdb where id=?',[user_id],(err,data)=>{
             if(err) console.log(err);
             // 보유 잔액보다 큰 금액 입력시 실행

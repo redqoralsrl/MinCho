@@ -18,7 +18,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/javascripts/wallet.js"></script>
-   
+    <script>
+        $(document).ready(function () {
+            $('#deposit').on('click', () => {
+                console.log('입금처리');
+                $.ajax({
+                    url: '/wallet/deposit',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { 'data': $('#num').val() },
+                    success: (result_balance) => {
+                        if (result_balance['result_balance'] == true) {
+                            alert('입금완료!');
+                        }
+                        location.reload('/wallet');
+                    }
+                });
+            });
+            $('#withdraw').on('click', () => {
+                console.log('출금처리');
+                $.ajax({
+                    url: '/wallet/withdraw',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { 'data': $('#num1').val() },
+                    success: (result_balance) => {
+                        if (result_balance['result_balance'] == true) {
+                            alert('출금완료!');
+                        } else {
+                            alert('출금실패');
+                            
+                        }
+                        location.reload('/wallet');
+                    }
+                });
+            });
+            setInterval(()=>{
+                const bit = $('.Bitcoin_count').text();
+                const eth = $('.Ethereum_count').text();
+                const lit = $('.Litecoin_count').text();
+                const rip = $('.Ripple_count').text();
+                const tim = $('.Timocoin_count').text();
+                const dog = $('.Dogecoin_count').text();
+
+                $('.Bitcoin_price').text('');
+                $('.Ethereum_price').text('');
+                $('.Litecoin_price').text('');
+                $('.Ripple_price').text('');
+                $('.Timocoin_price').text('');
+                $('.Dogecoin_price').text('');
+                
+                $('.Bitcoin_price').text(Number(bit) * Number($('#Bitcoin').text().replace(/,/g,"")));
+                $('.Ethereum_price').text(Number(eth) * Number($('#Ethereum').text().replace(/,/g,"")));
+                $('.Litecoin_price').text(Number(lit) * Number($('#Lietecoin').text().replace(/,/g,"")));
+                $('.Ripple_price').text(Number(rip) * Number($('#Ripple').text().replace(/,/g,"")));
+                $('.Timocoin_price').text(Number(tim) * Number($('#Timocoin').text().replace(/,/g,"")));
+                $('.Dogecoin_price').text(Number(dog) * Number($('#Dogecoin').text().replace(/,/g,"")));
+
+                $('.krw_all').text((Number($('.Bitcoin_price').text()) + Number($('.Ethereum_price').text()) + Number($('.Litecoin_price').text()) +  Number($('.Ripple_price').text()) + Number($('.Timocoin_price').text()) + Number($('.Dogecoin_price').text())).toLocaleString('ko-KR')+"KRW");
+            },1000)
+
+        });
+    </script>
     <script>
         function refresh() {
             location.reload();
@@ -43,13 +104,31 @@
                                         <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
                                             <span class="totalB">
                                                 <strong>총 보유 자산</strong>
-                                                <p>
-                                                    <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                                                    KRW
+                                                <p class="krw_all">
+                                                    <!-- <%=balance%> -->
+                                                    <!-- KRW -->
                                                 </p>
                                             </span>
                                             <span>
-                                                보유 코인 현황 공간
+                                                <div class="inside_wallet">
+                                                    <div style="width: 30%;">코인명</div>
+                                                    <div style="width: 30%;">평가액</div>
+                                                    <div style="width: 30%;">보유수량</div>
+                                                </div>
+                                                <% coin.forEach((co)=>{ %>
+                                                    <% var names = wallet.find(element => element.coin_name == co); %>
+                                                    <div class="inside_wallet">
+                                                    <% if(names != undefined){ %>
+                                                        <div style="width: 30%;" class="divimg"><img src=<%=`/images/${co}.png`%> style="width: 40px; height: 40px;"><p><%=co%></p></div>
+                                                        <div style="width: 30%;" class="<%=co%>_price"></div>
+                                                        <div style="width: 30%;" class="<%=co%>_count"><%=names.wallet_coin_count%></div>
+                                                    <% }else{ %>
+                                                        <div style="width: 30%;"  class="divimg"><img src=<%=`/images/${co}.png`%> style="width: 40px; height: 40px;"><p><%=co%></p></div>
+                                                        <div style="width: 30%;" >0</div>
+                                                        <div style="width: 30%;" class="<%=co%>_count">0</div>
+                                                    <% } %>
+                                                    </div>
+                                                <% }) %>
                                             </span>
                                         </div>
                                     </div>

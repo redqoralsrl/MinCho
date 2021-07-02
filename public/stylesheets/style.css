@@ -215,13 +215,13 @@ table, td, th{
   margin-top: 70px;
   width: 685px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 #buy, #sell{
   position: relative;
   background: #fff;
   padding: 20px;
-  width: 280px;
+  width: 290px;
   height: 340px;
   text-align: right;
   font-weight: bolder;

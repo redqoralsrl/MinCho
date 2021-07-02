@@ -135,40 +135,42 @@
                 <div class="buybox">
                     <form id="buy" action="/trade/buy" method="POST">
                         <h3>매수</h3>
-                        <dl>
-                            <dt id="leftdiv">주문가능</dt>
-                            <dd>
-                                <% if(logined == true){ %>
-                                    <% if(data != ""){ %>
-                                        <%= data[0].balance.toLocaleString('ko-KR') %>
-                                    <% }else { %>
-                                        0
+                        <div>
+                            <dl>
+                                <dt id="leftdiv">주문가능</dt>
+                                <dd>
+                                    <% if(logined == true){ %>
+                                        <% if(data != ""){ %>
+                                            <%= data[0].balance.toLocaleString('ko-KR') %>
+                                        <% }else { %>
+                                            0
+                                        <% } %>
+                                        KRW
+                                    <% }else{ %>
+                                        0 KRW
                                     <% } %>
-                                    KRW
-                                <% }else{ %>
-                                    0 KRW
-                                <% } %>
-                                
-                            </dd>
-                            <dt id="leftdiv">주문가격</dt>
-                            <dd><input class="coin_value" name="coin_value" style="width: 100%;"/></dd>
-                            <dt id="leftdiv">주문금액</dt>
-                            <dd><input id="user_krw" name="number" type="number" style="width: 70%; padding: 4px; border: 1px solid #999;" value="0" required> KRW<br></dd>
-                            <% if(logined == false){ %>
-                                <dd class="centerdiv"><a href="/login">
-                                    <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center; width: 93%;">
-                                </a></dd>
-                            <% }else{ %>
-                                <dd class="centerdiv">
-                                    <input class="per" onclick="percent(25)" type="button" value="25%">
-                                    <input class="per" onclick="percent(50)" type="button" value="50%">
-                                    <input class="per" onclick="percent(75)" type="button" value="75%">
-                                    <input class="per" onclick="percent(100)" type="button" value="100%">
+                                    
                                 </dd>
-                            <% } %> 
-                            <dt></dt>
-                            <dd></dd>
-                        </dl>
+                                <dt id="leftdiv">주문가격</dt>
+                                <dd><input class="coin_value" name="coin_value" style="width: 100%;"/></dd>
+                                <dt id="leftdiv">주문금액</dt>
+                                <dd><input id="user_krw" name="number" type="number" style="width: 70%; padding: 4px; border: 1px solid #999;" value="0" required> KRW<br></dd>
+                                <% if(logined == false){ %>
+                                    <dd class="centerdiv"><a href="/login">
+                                        <input class="endbtn" value="로그인 후 이용하세요" style="text-align: center; width: 93%;">
+                                    </a></dd>
+                                <% }else{ %>
+                                    <dd class="centerdiv">
+                                        <input class="per" onclick="percent(25)" type="button" value="25%">
+                                        <input class="per" onclick="percent(50)" type="button" value="50%">
+                                        <input class="per" onclick="percent(75)" type="button" value="75%">
+                                        <input class="per" onclick="percent(100)" type="button" value="100%">
+                                    </dd>
+                                <% } %> 
+                                <dt></dt>
+                                <dd></dd>
+                            </dl>
+                        </div>
                         <div class="fixed_bottom">
                             <p>수수료 : 0.05%</p>
                             <% if(logined == true){ %>

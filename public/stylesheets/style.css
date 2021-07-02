@@ -138,7 +138,7 @@ table, td, th{
 }
 .tab2{
   position: sticky;
-  top: 150px;
+  top: 72px;
   float: right;
   padding: 30px;
   margin-top: 20px;
@@ -299,7 +299,7 @@ table, td, th{
   display: inline-block;
 }
 .endbtn{
-  width: 93%;
+  width: 100%;
   padding: 8px;
   font-weight: bolder;
   font-size: 15px;

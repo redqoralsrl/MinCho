@@ -160,102 +160,93 @@
                                 </span>
                                 <span class="tabB">
 
-                                <div class="faq-content">
-                                    <button class="question" id="que-1">
-                                        <span id="que-1-toggle"></span>
-                                        <span>KRW 충전</span>
-                                    </button>
-                                    
-                                    <div class="answer" id="ans-1">
-                                        <div class="TabArea">
-                                            <form action="/wallet/deposit" method="POST">
-                                                <input type="number" id="num" placeholder="0" name="money" style="height: 25px; border-radius: 10px;">
-                                                <input type="submit" value="입금" id="deposit" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
-                                            </form>
+                                    <div class="faq-content">
+                                        <button class="question" id="que-1">
+                                            <span id="que-1-toggle"></span>
+                                            <span>KRW 충전</span>
+                                        </button>
+                                        
+                                        <div class="answer" id="ans-1">
+                                            <div class="TabArea">
+                                                <form action="/wallet/deposit" method="POST">
+                                                    <input type="number" id="num" placeholder="0" name="money" style="height: 25px; border-radius: 10px;">
+                                                    <input type="submit" value="입금" id="deposit" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="faq-content">
-                                    <button class="question" id="que-2">
-                                        <span id="que-2-toggle"></span>
-                                        <span>출금신청</span>
-                                    </button>
+                                    <div class="faq-content">
+                                        <button class="question" id="que-2">
+                                            <span id="que-2-toggle"></span>
+                                            <span>출금신청</span>
+                                        </button>
 
-                                    <div class="answer" id="ans-2">
-                                        <div class="TabArea">
-                                            <form action="/wallet/withdraw" method="POST">
-                                                <input type="number" id="num1" placeholder="0" name="money"  style="height: 25px; border-radius: 10px;">
-                                                <input type="submit" value="출금" id="withdraw" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
-                                            </form>
+                                        <div class="answer" id="ans-2">
+                                            <div class="TabArea">
+                                                <form action="/wallet/withdraw" method="POST">
+                                                    <input type="number" id="num1" placeholder="0" name="money"  style="height: 25px; border-radius: 10px;">
+                                                    <input type="submit" value="출금" id="withdraw" style=" height: 25px; width: 35px; border-radius: 10px;   cursor: pointer;">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="faq-content">
-                                    <button class="question" id="que-3"><span
-                                            id="que-3-toggle"></span><span>입출금내역</span></button>
-                                    <div class="answer" id="ans-3" style="overflow:scroll; width:500px; height:600px;">
-
-                                       
-                                        <div style="overflow-x:hidden; width:500px; height:900px;">
-                                            <%trade.forEach((item,index)=>{%>
-                                                <table>
-                                                    <tr>
-                                                        <th width="80">[<%=item.action%>]</th>
-                                                        <th width="200"><%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%> </th>
-                                                        <th width="100"><%=item.money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>원</th>
-                                                    </tr>
-                                                <%})%>
-                                                </table>
+                                    <div class="faq-content">
+                                        <button class="question" id="que-3"><span
+                                                id="que-3-toggle"></span><span>입출금내역</span></button>
+                                        <div class="answer" id="ans-3" style="overflow:scroll; width:500px; height:600px;">
+                                            <div style="overflow-x:hidden; width:500px; height:900px;">
+                                                <%trade.forEach((item,index)=>{%>
+                                                    <table>
+                                                        <tr>
+                                                            <th width="80">[<%=item.action%>]</th>
+                                                            <th width="200"><%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%> </th>
+                                                            <th width="100"><%=item.money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>원</th>
+                                                        </tr>
+                                                    <%})%>
+                                                    </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <script>
-                                    const items = document.querySelectorAll('.question');
+                                    <script>
+                                        const items = document.querySelectorAll('.question');
 
-                                    function openCloseAnswer() {
-                                        const answerId = this.id.replace('que', 'ans');
+                                        function openCloseAnswer() {
+                                            const answerId = this.id.replace('que', 'ans');
 
-                                        if (document.getElementById(answerId).style.display === 'block') {
-                                            document.getElementById(answerId).style.display = 'none';
-                                            document.getElementById(this.id + '-toggle').textContent = '+';
-                                        } else {
-                                            document.getElementById(answerId).style.display = 'block';
-                                            document.getElementById(this.id + '-toggle').textContent = '-';
+                                            if (document.getElementById(answerId).style.display === 'block') {
+                                                document.getElementById(answerId).style.display = 'none';
+                                                document.getElementById(this.id + '-toggle').textContent = '+';
+                                            } else {
+                                                document.getElementById(answerId).style.display = 'block';
+                                                document.getElementById(this.id + '-toggle').textContent = '-';
+                                            }
                                         }
-                                    }
 
-                                    items.forEach(item => item.addEventListener('click', openCloseAnswer));
-                                </script>
-                            </span>
+                                        items.forEach(item => item.addEventListener('click', openCloseAnswer));
+                                    </script>
+                                </span>
+                            </article>
                         </div>
-                        </article>
                     </div>
+                </section>
+                <section class="tab2" style="margin-top: 0;">
+                    <table border=1 id="table_ticker" class="table table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th>영문명</th>
+                                <th>현재가</th>
+                                <th>전일대비</th>
+                                <th>거래대금</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </section>
             </div>
-
-            </section>
-            <section class="ty02">
-                <article>
-                    <span class="tabB">
-                        <table border=1 id="table_ticker" class="table table-hover text-center">
-                            <thead>
-                                <tr>
-                                    <td>영문명</td>
-                                    <td>단위 (KRW)</td>
-                                    <td>현재가</td>
-                                    <td>전일대비</td>
-                                    <td>거래대금</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </span>
-                </article>
-            </section>
-        </div>
         </div>
         <footer>
 

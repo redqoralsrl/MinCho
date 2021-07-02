@@ -18,44 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/javascripts/wallet.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#deposit').on('click', () => {
-                console.log('입금처리');
-                $.ajax({
-                    url: '/wallet/deposit',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: { 'data': $('#num').val() },
-                    success: (result_balance) => {
-                        if (result_balance['result_balance'] == true) {
-                            alert('입금완료!');
-                        }
-                        location.reload('/wallet');
-                    }
-                });
-            });
-            $('#withdraw').on('click', () => {
-                console.log('출금처리');
-                $.ajax({
-                    url: '/wallet/withdraw',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: { 'data': $('#num1').val() },
-                    success: (result_balance) => {
-                        if (result_balance['result_balance'] == true) {
-                            alert('출금완료!');
-                        } else {
-                            alert('출금실패');
-                            
-                        }
-                        location.reload('/wallet');
-                    }
-                });
-            });
-
-        });
-    </script>
+   
     <script>
         function refresh() {
             location.reload();
@@ -81,7 +44,7 @@
                                             <span class="totalB">
                                                 <strong>총 보유 자산</strong>
                                                 <p>
-                                                    <%=balance.toLocaleString('ko-KR')%>
+                                                    <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                                     KRW
                                                 </p>
                                             </span>
@@ -110,7 +73,7 @@
                                         </dt>
                                         <dd class="first">
                                             <strong>
-                                                <%=balance.toLocaleString('ko-KR')%>
+                                                <%=balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                                     KRW<br>
                                             </strong>
                                         </dd>
@@ -162,7 +125,7 @@
                                                     <tr>
                                                         <th width="80">[<%=item.action%>]</th>
                                                         <th width="200"><%=moment(item.date).format('YYYY.MM.DD - HH:mm:ss')%> </th>
-                                                        <th width="100"><%=item.money%>원</th>
+                                                        <th width="100"><%=item.money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>원</th>
                                                     </tr>
                                                 <%})%>
                                                 </table>

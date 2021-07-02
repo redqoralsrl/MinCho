@@ -13,6 +13,8 @@ router.use(session({
   saveUninitialized: true, // 세션이 필요할 때 세션을 실행시킨다(서버에 부담을 줄인다)
 }));
 
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.logined == true){

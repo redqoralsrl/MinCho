@@ -1,6 +1,5 @@
 <!DOCTYPE html>
     <head>
-        <link rel="stylesheet" href="/stylesheets/style.css"/>
         <link rel="stylesheet" href="/stylesheets/mytrade.css"/>
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -12,18 +11,16 @@
         <div class="main">
             <div class="mytrade">
                 <div class="holdingCoin">
-
-    
                     <div class="amountTable">
                         <table class="amountTableHead">
                             <colgroup>
-                                <col width="*">
                                 <col width="140">
                                 <col width="140">
                                 <col width="140">
                                 <col width="140">
-                                <col width="135">
-                                <col width="100">
+                                <col width="140">
+                                <col width="140">
+                                <!-- <col width="100"> -->
                             </colgroup>
                             <thead>
                                 <tr>
@@ -33,7 +30,7 @@
                                     <th>매수금액</th>
                                     <th>평가금액</th>
                                     <th>평가손익(%)</th>
-                                    <th>&nbsp;</th>
+                                    <!-- <th>&nbsp;</th> -->
                                 </tr>
                             </thead>
                         </table>
@@ -41,20 +38,33 @@
                             <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
                                 <table class="amountTableBody">
                                     <colgroup>
-                                        <col width="*">
                                         <col width="140">
                                         <col width="140">
                                         <col width="140">
                                         <col width="140">
-                                        <col width="135">
-                                        <col width="100">
+                                        <col width="140">
+                                        <col width="140">
+                                        <!-- <col width="100"> -->
                                     </colgroup>
                                     <tbody>
+                                        <% if(wallet.length < 1) { %>
                                         <tr class="amountTableRow" style="height: 540px; overflow: auto;">
-                                            <td colspan="7" class="amountTableCell amountTableCell--EmptyData">
+                                            <td class="amountTableCell amountTableCell--EmptyData" colspan="7">
                                                 보유 중인 코인이 없습니다.
                                             </td>
                                         </tr>
+                                        <% } else { %>
+                                            <% wallet.forEach((item) => { %>
+                                            <tr class="amountTableRow">
+                                                <td><%= item.coin_name %></td>
+                                                <td><%= item.wallet_coin_count %></td>
+                                                <td><%= item.avg_buy_price %></td>
+                                                <td>매수금액?</td>
+                                                <td>평가금액??</td>
+                                                <td>평가손익???</td>
+                                            </tr>
+                                            <% }) %>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>
@@ -74,52 +84,67 @@
                     <div class="amountTable">
                         <table class="amountTableHead">
                             <colgroup>
-                                <col width="94">
-                                <col width="64">
-                                <col width="48">
+                                <col width="160">
+                                <col width="80">
+                                <!-- <col width="48"> -->
                                 <col width="40">
-                                <col width="144">
-                                <col width="144">
-                                <col width="144">
-                                <col width="98">
                                 <col width="120">
-                                <col width="94">
+                                <col width="140">
+                                <col width="140">
+                                <col width="100">
+                                <col width="140">
+                                <!-- <col width="94"> -->
                             </colgroup>
                             <thead>
                                 <tr>
                                     <th class="amountTableHeadTitle">체결시간</th>
                                     <th class="amountTableHeadTitle">코인</th>
-                                    <th class="amountTableHeadTitle">마켓</th>
+                                    <!-- <th class="amountTableHeadTitle">마켓</th> -->
                                     <th class="amountTableHeadTitle">종류</th>
                                     <th class="amountTableHeadTitle">거래수량</th>
                                     <th class="amountTableHeadTitle">거래단가</th>
                                     <th class="amountTableHeadTitle">거래금액</th>
                                     <th class="amountTableHeadTitle">수수료</th>
                                     <th class="amountTableHeadTitle">정산금액</th>
-                                    <th class="amountTableHeadTitle">주문시간</th>
+                                    <!-- <th class="amountTableHeadTitle">주문시간</th> -->
                                 </tr>
                             </thead>
                         </table>
                         <div style="height: 687px; overflow: auto;">
                             <table class="amountTableBody">
                                 <colgroup>
-                                    <col width="94">
-                                    <col width="64">
-                                    <col width="48">
+                                    <col width="160">
+                                    <col width="80">
+                                    <!-- <col width="48"> -->
                                     <col width="40">
-                                    <col width="144">
-                                    <col width="144">
-                                    <col width="144">
-                                    <col width="98">
                                     <col width="120">
-                                    <col width="94">
+                                    <col width="140">
+                                    <col width="140">
+                                    <col width="100">
+                                    <col width="140">
+                                    <!-- <col width="94"> -->
                                 </colgroup>
                                 <tbody>
+                                    <% if(trade.length < 1) { %>
                                     <tr class="amountTableRow" style="height: 540px; overflow: auto;">
                                         <td class="amountTableCell amountTableCell--EmptyData" colspan="10">
-                                            여기에 거래 내역
+                                            거래 내역이 없습니다.
                                         </td>
                                     </tr>
+                                    <% } else { %>
+                                        <% trade.forEach((item) => { %>
+                                        <tr class="amountTableRow">
+                                            <td><%=  moment(item.date).format('YYYY.MM.DD HH:mm:ss') %></td>
+                                            <td><%= item.coin_name %></td>
+                                            <td><%= item.action %></td>
+                                            <td><%= item.trade_coin_count %></td>
+                                            <td><%= (item.money - item.money * 0.05) / item.trade_coin_count %></td>
+                                            <td><%= item.money - item.money * 0.05 %></td>
+                                            <td><%= item.money * 0.05 %></td>
+                                            <td><%= item.money %></td>
+                                        </tr>
+                                        <% }) %>
+                                    <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -136,7 +161,7 @@
                             </dt>
                             <dd class="tradeAmountCountCell">
                                 <span class="tradeAmountCount">
-                                    0
+                                    <%= balance %>
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>

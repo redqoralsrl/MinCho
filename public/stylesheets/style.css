@@ -469,9 +469,7 @@ width: 30%;
 .text_1_1{
   text-align: center;
     font-size: 2em;
-    /* text-transform: uppercase; */
     letter-spacing: 2px;
-    /* color: #ddd; */
 }
 .text_1_1 h2 span{
   color: #000;
@@ -485,7 +483,6 @@ width: 30%;
   width: 80%;
 }
 .container {
-  /* width: 1280px; */
   width: 87rem;
   margin: 72px auto;
 }

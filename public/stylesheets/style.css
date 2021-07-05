@@ -384,8 +384,8 @@ table, td, th{
 .main_text{
   margin-bottom: 30px;
   text-align: center;
-  /* font-family: 'HangeulNuri-Bold'; */
   font-family: 'Eulyoo1945-SemiBold';
+  font-size: 27px;
 }
 @font-face {
   font-family: 'Eulyoo1945-SemiBold';
@@ -395,7 +395,7 @@ table, td, th{
 }
 
 .main_text h3{
-  margin-top: 10PX;
+  margin-top: 20px;
 }
 .main_img{
   width: 1000px;
@@ -419,9 +419,9 @@ width: 30%;
   
 }
 .to_start button{
-   height: 70px;
-   padding: 5px;
-   width: 150px;
+  height: 70px;
+  padding: 5px;
+  width: 150px;
     justify-content: center;
   border-radius: 30px;
   background-color : #24c0eb; 
@@ -430,7 +430,7 @@ width: 30%;
   text-align: center;
 }
 .to_start :hover{
- background-color:  rgb(56, 97, 251);
+  background-color:  rgb(56, 97, 251);
 }
 .to_start{
   padding-top: 120px; 
@@ -443,6 +443,7 @@ width: 30%;
 }
 
 
+
 .text_1 img{
   width: 100%;
   margin-bottom: 50px;
@@ -450,16 +451,9 @@ width: 30%;
 .text_1 h1 {
   text-align: center;
   font-size: 40px;
-  font-family: 'HangeulNuri-Bold';
-  /* font-family: 'Eulyoo1945-SemiBold'; */
-  
+  font-family: 'Eulyoo1945-SemiBold';
 }
-@font-face {
-  font-family: 'HangeulNuri-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/HangeulNuri-Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+
 .text2{
   padding: 5px;
     display: flex;

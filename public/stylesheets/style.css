@@ -42,6 +42,8 @@ table, td, th{
   background-color: #fff;
   padding: 8px 12px;
   border-bottom: 1px solid #eeee;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 .navbar_logo img{
   height: 40px;
@@ -490,7 +492,8 @@ width: 30%;
 }
 .container {
   /* width: 1280px; */
-  margin: 0 auto;
+  width: 87rem;
+  margin: 72px auto;
 }
 .feature-box dl {
   flex: 1;

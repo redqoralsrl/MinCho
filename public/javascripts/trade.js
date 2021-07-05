@@ -131,7 +131,7 @@ function upbitWebSocket(selectTime, selectName) {
         else if(result.code == selectName) {
             console.log("오예 같다");
 
-            mergeTickToBar(result.trade_price, result.timestamp);
+            mergeTickToBar(result.trade_price, result.timestamp+15000);
             console.log("몇번째 찍는중? ", ticksInCurrentBar, "/", selectTime);
 
             if(++ticksInCurrentBar === selectTime) {
@@ -142,7 +142,7 @@ function upbitWebSocket(selectTime, selectName) {
                     low: null,
                     close: null,
                     // time: result.timestamp/1000,
-                    time: result.timestamp
+                    time: result.timestamp+15000
                 };
                 ticksInCurrentBar = 0;
             }
@@ -297,5 +297,5 @@ $(function() {
         upbitWebSocket(paramTime, paramName);
     }
     
-    setInterval(callWS, 3000);
+    setInterval(callWS, 1000);
 });

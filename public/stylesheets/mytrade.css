@@ -98,6 +98,7 @@
 
 .amountTableRow {
     text-align: center;
+    height: 50px;
 }
 
 .amountTableHead {
@@ -131,6 +132,7 @@
     background-color: #fff;
     padding: 8px 12px;
     border-bottom: 1px solid #eeee;
+    text-transform: uppercase;
   }
   .navbar_logo img{
     height: 40px;

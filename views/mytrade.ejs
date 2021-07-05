@@ -54,14 +54,14 @@
                                             </td>
                                         </tr>
                                         <% } else { %>
-                                            <% wallet.forEach((item) => { %>
+                                            <% wallet.forEach((item, index) => { %>
                                             <tr class="amountTableRow">
-                                                <td><%= item.coin_name %></td>
-                                                <td><%= item.wallet_coin_count %></td>
-                                                <td><%= item.avg_buy_price %></td>
-                                                <td>매수금액?</td>
-                                                <td>평가금액??</td>
-                                                <td>평가손익???</td>
+                                                <td class="<%= index %>"><%= item.coin_name %></td>
+                                                <td class="<%= index %>_coinCount"><%= item.wallet_coin_count.toFixed(0) %></td>
+                                                <td class="<%= index %>_avg"><%= item.avg_buy_price.toFixed(0) %></td>
+                                                <td class="<%= index %>_buying"><%= (item.wallet_coin_count * item.avg_buy_price).toFixed(0) %></td>
+                                                <td class="<%= index %>_apiPrice"></td>
+                                                <td class="<%= index %>_apiPercent"></td>
                                             </tr>
                                             <% }) %>
                                         <% } %>
@@ -137,11 +137,11 @@
                                             <td><%=  moment(item.date).format('YYYY.MM.DD HH:mm:ss') %></td>
                                             <td><%= item.coin_name %></td>
                                             <td><%= item.action %></td>
-                                            <td><%= item.trade_coin_count %></td>
-                                            <td><%= (item.money - item.money * 0.05) / item.trade_coin_count %></td>
-                                            <td><%= item.money - item.money * 0.05 %></td>
-                                            <td><%= item.money * 0.05 %></td>
+                                            <td><%= item.trade_coin_count.toFixed(0) %></td>
+                                            <td><%= ((item.money - item.money * 0.05) / item.trade_coin_count).toFixed(0) %></td>
                                             <td><%= item.money %></td>
+                                            <td><%= item.money * 0.05 %></td>
+                                            <td><%= item.money - item.money * 0.05 %></td>
                                         </tr>
                                         <% }) %>
                                     <% } %>
@@ -161,7 +161,11 @@
                             </dt>
                             <dd class="tradeAmountCountCell">
                                 <span class="tradeAmountCount">
-                                    <%= balance %>
+                                    <% if(wallet.length < 1) { %>
+                                        0
+                                    <% } else { %>
+                                        <%= balance %>
+                                    <% } %>
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>
@@ -172,7 +176,11 @@
                             </dt>
                             <dd class="tradeAmountCountCell">
                                 <span class="tradeAmountCount">
-                                    0
+                                    <% if(wallet.length < 1) { %>
+                                        0
+                                    <% } else { %>
+                                        <span class="totalApiPrice"></span>
+                                    <% } %>
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>
@@ -183,12 +191,16 @@
                             </dt>
                             <dd class="tradeAmountCountCell">
                                 <span class="tradeAmountCount">
-                                    0
+                                    <% if(wallet.length < 1) { %>
+                                        0
+                                    <% } else { %>
+                                        <%= totalMoney.toFixed(0) %>
+                                    <% } %>
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>
                         </dl>
-                        <dl class="tradeAmountRowTotal">
+                        <!-- <dl class="tradeAmountRowTotal">
                             <dt class="tradeAmountTitleCell">
                                 <span class="tradeAmountTitle">총 평가손익</span>
                             </dt>
@@ -198,8 +210,8 @@
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>
-                        </dl>
-                        <dl class="tradeAmountRowTotal">
+                        </dl> -->
+                        <!-- <dl class="tradeAmountRowTotal">
                             <dt class="tradeAmountTitleCell">
                                 <span class="tradeAmountTitle">총 평가금액</span>
                             </dt>
@@ -209,14 +221,18 @@
                                     <i class="tradeAmountUnit">KRW</i>
                                 </span>
                             </dd>
-                        </dl>
+                        </dl> -->
                         <dl class="tradeAmountRowTotal">
                             <dt class="tradeAmountTitleCell">
                                 <span class="tradeAmountTitle">총 평가수익률</span>
                             </dt>
                             <dd class="tradeAmountCountCell">
                                 <span class="tradeAmountCount">
+                                    <% if(wallet.length < 1) { %>
                                     -
+                                    <% } else { %>
+                                    <span class="totalPercent"></span>
+                                    <% } %>
                                     <i class="tradeAmountUnit">%</i>
                                 </span>
                             </dd>

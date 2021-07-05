@@ -51,6 +51,7 @@
 }
 
 .tradeAmountCount {
+  width: 140px;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -98,6 +99,18 @@
 .amountTableRow {
     text-align: center;
 }
+
+.amountTableHead {
+  margin-bottom: 15px;
+  background-color: #24c0eb;
+  color: #ffffff;
+}
+
+#table_ticker thead {
+  background-color: #666;
+  color: #ffffff;
+}
+
 
 /* title */
 *{

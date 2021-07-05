@@ -1,3 +1,4 @@
+
 /* ===COIN LIST===================================================================== */
 function comma(str) {
     str = String(str);
@@ -30,7 +31,7 @@ function setUpbitData(){
         let arr_market_name = [];
         let arr_english_name = [];
 
-        for(var i = 0; i < markets.length;i++){
+        for(var i = 0; i < markets.length; i++){
             if(matching(markets[i].market, markets[i].korean_name)){
                 arr_markets += markets[i].market+(",");
                 arr_market_name.push(markets[i].market);
@@ -44,13 +45,35 @@ function setUpbitData(){
             dataType: "json",
         })
         .done(function(tickers){
+            let totalPercent = 0;
+            let totalApiPrice = 0;
             $("#table_ticker > tbody > tr").remove();
-            for(let i = 0; i < tickers.length; i++){
+            
+            for(let i = 0; i < tickers.length; i++) {
                 if(arr_english_name[i] == "Bitcoin Cash") {
                     arr_english_name[i] = "Timocoin";
                     arr_market_name[i] = "KRW-TMC";
                 }
 
+                for(let j = 0; j < 6; j++) {
+                    if($(`.${j}`).text() == arr_english_name[i]) {
+                        let percent = (Number($(`.${j}_apiPrice`).text()) - Number($(`.${j}_buying`).text())) / Number($(`.${j}_apiPrice`).text());
+                        let apiPrice = Number($(`.${j}_coinCount`).text()) * tickers[i].trade_price;
+
+                        $(`.${j}_apiPrice`).text("");
+                        $(`.${j}_apiPercent`).text("");
+                        $(`.${j}_apiPrice`).text(`${apiPrice.toFixed(0)}`);
+                        $(`.${j}_apiPercent`).text(`${percent.toFixed(2)}`);
+
+                        totalPercent += percent;
+                        $(".totalPercent").text("");
+                        $(".totalPercent").text(`${totalPercent.toFixed(2)}`);
+
+                        totalApiPrice += apiPrice;
+                        $(".totalApiPrice").text("");
+                        $(".totalApiPrice").text(`${totalApiPrice.toFixed(0)}`);
+                    }
+                }
 
                 let rowHtml = `<tr><td class="en_name">` + arr_english_name[i] + "</td>";
                 rowHtml += `<td rowspan="2" class="coinlistNum">` + comma(tickers[i].trade_price)+"</td>";
@@ -68,7 +91,7 @@ function setUpbitData(){
         console.log("[ ERROR ] UPbit API connect error");
     });
 
-    setTimeout(setUpbitData, 1000);
+    setTimeout(setUpbitData, 500);
 }
 
 /* ===FUNC CALL===================================================================== */

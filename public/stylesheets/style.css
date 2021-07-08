@@ -148,6 +148,7 @@ table, td, th{
 }
 .trade_body{
   background: #eeeeee;
+  min-height: 100vh;
 }
 .red{
   color : red;

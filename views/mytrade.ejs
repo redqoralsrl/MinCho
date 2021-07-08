@@ -1,5 +1,6 @@
 <!DOCTYPE html>
     <head>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
         <link rel="stylesheet" href="/stylesheets/mytrade.css"/>
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -7,11 +8,11 @@
         <%- include('title') %>
     </head>
 
-    <body>
+    <body class="trade_body" _c_t_common="1">
         <div class="main">
             <div class="mytrade">
                 <div class="holdingCoin">
-                    <div class="amountTable">
+                    <div class="amountTable upper">
                         <table class="amountTableHead">
                             <colgroup>
                                 <col width="140">
@@ -34,7 +35,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="position: relative; overflow: hidden; width: 100%; height: 540px;">
+                        <div style="position: relative; overflow: hidden; width: 100%; height: 340px;">
                             <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -17px; margin-bottom: -17px;">
                                 <table class="amountTableBody">
                                     <colgroup>
@@ -57,7 +58,7 @@
                                             <% wallet.forEach((item, index) => { %>
                                             <tr class="amountTableRow">
                                                 <td class="<%= index %>"><%= item.coin_name %></td>
-                                                <td class="<%= index %>_coinCount"><%= item.wallet_coin_count.toFixed(0) %></td>
+                                                <td class="<%= index %>_coinCount"><%= item.wallet_coin_count %></td>
                                                 <td class="<%= index %>_avg"><%= item.avg_buy_price.toFixed(0) %></td>
                                                 <td class="<%= index %>_buying"><%= (item.wallet_coin_count * item.avg_buy_price).toFixed(0) %></td>
                                                 <td class="<%= index %>_apiPrice"></td>
@@ -110,7 +111,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div style="height: 687px; overflow: auto;">
+                        <div class="amountTableContent">
                             <table class="amountTableBody">
                                 <colgroup>
                                     <col width="160">
@@ -137,11 +138,11 @@
                                             <td><%=  moment(item.date).format('YYYY.MM.DD HH:mm:ss') %></td>
                                             <td><%= item.coin_name %></td>
                                             <td><%= item.action %></td>
-                                            <td><%= item.trade_coin_count.toFixed(0) %></td>
+                                            <td><%= item.trade_coin_count %></td>
                                             <td><%= ((item.money - item.money * 0.05) / item.trade_coin_count).toFixed(0) %></td>
                                             <td><%= item.money %></td>
-                                            <td><%= item.money * 0.05 %></td>
-                                            <td><%= item.money - item.money * 0.05 %></td>
+                                            <td><%= (item.money * 0.05).toFixed(0) %></td>
+                                            <td><%= (item.money - item.money * 0.05).toFixed(0) %></td>
                                         </tr>
                                         <% }) %>
                                     <% } %>
@@ -152,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="floating">
+            <div class="mytrade_right1">
                 <div class="mytradeState">
                     <div class="tradeAmount">
                         <dl class="tradeAmountRowTotal">
@@ -239,21 +240,22 @@
                         </dl>
                     </div>
                 </div>
-
-                <div>
-                    <table id="table_ticker" class="conintable">
-                        <thead>
-                            <tr>
-                                <td>영문명</td>
-                                <td>현재가</td>
-                                <td>전일대비</td>
-                                <td>거래대금</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+            <div class="mytrade_right2">
+                <!-- <table id="table_ticker" class="conintable"> -->
+                <table border=1 id="table_ticker" class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>영문명</th>
+                            <th>현재가</th>
+                            <th>전일대비</th>
+                            <th>거래대금</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
     </body>

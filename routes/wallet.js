@@ -78,21 +78,21 @@ router.post("/withdraw", function (req, res, next) {
   var id = req.session.userId;
   var balance = req.session.balance;
   // var name = req.session.name;
-  var action  = "출금";
+  var action = "출금";
   var money = req.body.money;
-  
+
   client.query("select * from userdb where id=?", [id], (err, data) => {
     const user_balance = data[0].balance;
 
     // console.log('user돈',user_balance);
     const result_balance = parseInt(user_balance) - parseInt(money);
-    if(result_balance < 0){
+    if (result_balance < 0) {
       res.send('<script>alert("잔액이 부족합니다");history.back();</script>');
-  }
-    else{
+    }
+    else {
       var datas = [id, money, action];
       var sql =
-      "insert into trade (id,money,action,date) values(?,?,?,now())";
+        "insert into trade (id,money,action,date) values(?,?,?,now())";
       client.query(sql, datas, function (err, row) {
         client.query(
           "update userdb set balance=? where id=?",
@@ -103,9 +103,9 @@ router.post("/withdraw", function (req, res, next) {
             if (err) console.error("err: " + err);
             res.redirect("/wallet");
           }
-          );
-        });
-      };
+        );
+      });
+    };
   });
 });
 

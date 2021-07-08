@@ -396,7 +396,8 @@ table, td, th{
 }
 
 .main_text h3{
-  margin-top: 20px;
+  margin-top: 50px;
+  line-height: 1.5;
 }
 .main_img{
   width: 1000px;
@@ -451,8 +452,9 @@ width: 30%;
 }
 .text_1 h1 {
   text-align: center;
-  font-size: 40px;
+  font-size: 37px;
   font-family: 'Eulyoo1945-SemiBold';
+  line-height: 1.5;
 }
 
 .text2{

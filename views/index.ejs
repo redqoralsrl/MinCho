@@ -47,7 +47,11 @@
           </h1>
           <div class="to_start">
             <button>
-              <a href="/login"><h2>거래 시작하기</h2></a>
+              <% if(logined == false){ %>
+                <a href="/login"><h2>거래 시작하기</h2></a>
+              <% }else{ %>
+                <a href="/trade"><h2>거래 시작하기</h2></a>
+              <% } %>
             </button>           
 
           </div>

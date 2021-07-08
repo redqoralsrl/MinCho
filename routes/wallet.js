@@ -19,17 +19,16 @@ router.get("/", (req, res) => {
     res.send('<script>alert("로그인 후 이용해주세요"); location.replace("/login");</script>')
   }else{
     client.query(
-      "select * from trade where id=? order by num desc; select * from wallet where id=?",
-      [req.session.userId, req.session.userId],
+      "select * from trade where id=? order by num desc; select * from wallet where id=?; select * from userdb where id=?",
+      [req.session.userId, req.session.userId, req.session.userId],
       (err, data) => {
         if(err) console.log(err);
-        console.log(data);
         coin = ["Bitcoin", "Ethereum", "Litecoin", "Ripple", "Timocoin", "Dogecoin"];
         res.render("wallet", {
           logined: true,
           id: req.session.userId,
           name: req.session.name,
-          balance: req.session.balance,
+          balance: data[2][0].balance,
           trade : data[0],
           wallet : data[1],
           coin : coin,
